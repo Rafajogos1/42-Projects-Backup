@@ -6,12 +6,12 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:06:40 by ramartin          #+#    #+#             */
-/*   Updated: 2022/02/28 13:39:44 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/03/01 13:42:17 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H;
-# define GET_NEXT_LINE_H;
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <stdlib.h>
 # include <unistd.h>

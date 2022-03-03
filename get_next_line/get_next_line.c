@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:05:06 by ramartin          #+#    #+#             */
-/*   Updated: 2022/02/28 13:42:46 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:05:17 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*next_line(char *save)
 	i = 0;
 	while (save[i] && save[i] != '\n')
 		i++;
-	if (!save)
+	if (!save[i])
 	{
 		free(save);
 		return (NULL);
@@ -29,12 +29,11 @@ char	*next_line(char *save)
 	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
 	if (!s)
 		return (NULL);
+	i++;
 	j = 0;
 	while (save[i])
 	{
-		s[j] = save[i];
-		j++;
-		i++;
+		s[j++] = save[i++];
 	}
 	s[j] = '\0';
 	free(save);
@@ -72,7 +71,7 @@ char	*get_line(char *save)
 char	*read_and_save(int fd, char *save)
 {
 	char	*buffer;
-	int		*read_bytes;
+	int		read_bytes;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -99,7 +98,8 @@ char	*get_next_line(int fd)
 	static char	*save;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (0);
+	save = (char *)malloc(sizeof(char) * BUFFER_SIZE);
 	save = read_and_save(fd, save);
 	if (!save)
 		return (NULL);
