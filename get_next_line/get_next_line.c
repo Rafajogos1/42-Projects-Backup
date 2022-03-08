@@ -6,39 +6,11 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:05:06 by ramartin          #+#    #+#             */
-/*   Updated: 2022/03/03 15:05:17 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:05:14 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*next_line(char *save)
-{
-	int		i;
-	int		j;
-	char	*s;
-
-	i = 0;
-	while (save[i] && save[i] != '\n')
-		i++;
-	if (!save[i])
-	{
-		free(save);
-		return (NULL);
-	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
-	if (!s)
-		return (NULL);
-	i++;
-	j = 0;
-	while (save[i])
-	{
-		s[j++] = save[i++];
-	}
-	s[j] = '\0';
-	free(save);
-	return (s);
-}
 
 char	*get_line(char *save)
 {
@@ -68,6 +40,32 @@ char	*get_line(char *save)
 	return (s);
 }
 
+char	*next_line(char *save)
+{
+	int		i;
+	int		j;
+	char	*s;
+
+	i = 0;
+	while (save[i] && save[i] != '\n')
+		i++;
+	if (!save[i])
+	{
+		free(save);
+		return (NULL);
+	}
+	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	if (!s)
+		return (NULL);
+	i++;
+	j = 0;
+	while (save[i])
+		s[j++] = save[i++];
+	s[j] = '\0';
+	free(save);
+	return (s);
+}
+
 char	*read_and_save(int fd, char *save)
 {
 	char	*buffer;
@@ -77,7 +75,7 @@ char	*read_and_save(int fd, char *save)
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
-	if ((!ft_strchr(save, '\n')) && read_bytes != 0)
+	while (!ft_strchr(save, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -99,7 +97,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	save = (char *)malloc(sizeof(char) * BUFFER_SIZE);
 	save = read_and_save(fd, save);
 	if (!save)
 		return (NULL);
@@ -107,3 +104,38 @@ char	*get_next_line(int fd)
 	save = next_line(save);
 	return (out);
 }
+
+/*
+int	main(void)
+{
+	int		fd;
+	int		fd2;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 1;
+	fd = open("test", O_RDWR);
+	fd2 = open("test", O_RDWR);
+	if (fd < 0)
+	{
+		printf("No test file detected.\n");
+		printf("Please create a file named ");
+		printf("\033[0;32m");
+		printf("\"test\"");
+		printf("\033[0;37m");
+		printf(".\n");
+	}
+	while (get_next_line(fd))
+		i++;
+	while (i != 0)
+	{
+		printf("\033[0;36m");
+		printf("Line %i: ", j);
+		printf("\033[0;37m");
+		printf("%s", get_next_line(fd2));
+		j++;
+		i--;
+	}
+}
+*/
