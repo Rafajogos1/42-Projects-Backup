@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:05:06 by ramartin          #+#    #+#             */
-/*   Updated: 2022/03/08 18:05:14 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:07:15 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,38 +104,3 @@ char	*get_next_line(int fd)
 	save = next_line(save);
 	return (out);
 }
-
-/*
-int	main(void)
-{
-	int		fd;
-	int		fd2;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 1;
-	fd = open("test", O_RDWR);
-	fd2 = open("test", O_RDWR);
-	if (fd < 0)
-	{
-		printf("No test file detected.\n");
-		printf("Please create a file named ");
-		printf("\033[0;32m");
-		printf("\"test\"");
-		printf("\033[0;37m");
-		printf(".\n");
-	}
-	while (get_next_line(fd))
-		i++;
-	while (i != 0)
-	{
-		printf("\033[0;36m");
-		printf("Line %i: ", j);
-		printf("\033[0;37m");
-		printf("%s", get_next_line(fd2));
-		j++;
-		i--;
-	}
-}
-*/
