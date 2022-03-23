@@ -17,10 +17,31 @@
 # include <stdarg.h>
 
 /* Printf */
-int	ft_printf_format(const char format);
-int	ft_printf(const char *format, ...);
+int	    printf_format(va_list args, const char format);
+int	    ft_printf(const char *format, ...);
 
-/* Char */
-int	printf_char(char out);
+/* Character */
+int	    printf_char(char out);
+
+/* String */
+int	    printf_string(char *out);
+
+/* Pointer */
+int	    ptrlen(uintptr_t num);
+void	putptr(uintptr_t num);
+int     printf_pointer(unsigned long long out);
+
+/* Decimal and Integer */
+int     printf_num(int out);
+
+/* Unsigned Decimal */
+int	    numlen(unsigned	int num);
+char	*uitoa(unsigned int n);
+int	    printf_udec(unsigned int out);
+
+/* Hexadecimal */
+int	    hexlen(unsigned	int num);
+void	puthex(unsigned int num, const char format);
+int	    printf_hex(unsigned int num, const char format);
 
 #endif
