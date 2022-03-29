@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:54 by ramartin          #+#    #+#             */
-/*   Updated: 2022/03/23 13:04:16 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:13:51 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			len = printf_format(args, format[i + 1]);
+			len += printf_format(args, format[i + 1]);
 			i++;
 		}
 		else
