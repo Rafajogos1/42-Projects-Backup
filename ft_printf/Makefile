@@ -6,7 +6,7 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 10:28:36 by ramartin          #+#    #+#              #
-#    Updated: 2022/03/29 09:53:28 by ramartin         ###   ########.fr        #
+#    Updated: 2022/03/29 10:45:46 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,44 +15,36 @@ LIBFT = ./libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
+AR = ar -rcs
+RM = /bin/rm -f
 
-SRCS = src/ft_printf.c \
-		src/ft_printf_char.c \
-		src/ft_printf_string.c \
-		src/ft_printf_pointer.c \
-		src/ft_printf_num.c \
-		src/ft_printf_udec.c \
-		src/ft_printf_hex.c
-
-SRCS_OBJ = ft_printf.o \
-			ft_printf_char.o \
-			ft_printf_string.o \
-			ft_printf_pointer.o \
-			ft_printf_num.o \
-			ft_printf_udec.o \
-			ft_printf_hex.o
+SRCS = ./src/ft_printf.c \
+		./src/ft_printf_char.c \
+		./src/ft_printf_string.c \
+		./src/ft_printf_pointer.c \
+		./src/ft_printf_num.c \
+		./src/ft_printf_udec.c \
+		./src/ft_printf_hex.c
 
 OBJS = $(SRCS:.c=.o)
 
-all:			$(NAME)
+all:		$(NAME)
 
-$(NAME):		$(OBJS)
-	$(MAKE) bonus -C./libft
-	cp libft/libft.a $(NAME)
-	$(CC) $(CFLAGS) $(SRCS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME):	$(OBJS) $(LIBFT)
+			$(AR) $(NAME) $(OBJS)
+
+$(LIBFT):
+			make -C ./libft
+			cp ./libft/libft.a $(NAME)
 
 clean:
-	$(MAKE) clean -C ./libft
-	$(RM) $(SRCS_OBJ)
-	$(RM) $(OBJS)
+			make clean -C ./libft
+			$(RM) $(OBJS)
 
-fclean:			clean
-	$(MAKE) fclean -C ./libft
-	$(RM) $(NAME)
+fclean:		clean
+			make fclean -C ./libft
+			$(RM) $(NAME)
 
-re:				fclean $(NAME)
+re:			fclean $(NAME)
 
-.PHONY:			 all clean fclean re
+.PHONY:		all clean fclean re
