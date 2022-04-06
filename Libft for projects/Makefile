@@ -6,7 +6,7 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 10:28:36 by ramartin          #+#    #+#              #
-#    Updated: 2022/04/06 10:49:02 by ramartin         ###   ########.fr        #
+#    Updated: 2022/04/06 11:18:16 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,22 @@ SRCS = ft_atoi.c \
 		  ft_memcpy.c \
 		  ft_memmove.c \
 		  ft_memset.c \
+		  ft_lstadd_back.c \
+		  ft_lstadd_front.c \
+		  ft_lstclear.c \
+		  ft_lstdelone.c \
+		  ft_lstiter.c \
+		  ft_lstlast.c \
+		  ft_lstmap.c \
+		  ft_lstnew.c \
+		  ft_lstsize.c \
+		  ft_printf_char.c \
+		  ft_printf_hex.c \
+		  ft_printf_num.c \
+		  ft_printf_pointer.c \
+		  ft_printf_string.c \
+		  ft_printf_udec.c \
+		  ft_printf.c \
 		  ft_putchar_fd.c \
 		  ft_putendl_fd.c \
 		  ft_putnbr_fd.c \
@@ -50,28 +66,9 @@ SRCS = ft_atoi.c \
 		  ft_strtrim.c \
 		  ft_substr.c \
 		  ft_tolower.c \
-		  ft_toupper.c \
-		  ft_printf_char.c \
-		  ft_printf_hex.c \
-		  ft_printf_num.c \
-		  ft_printf_pointer.c \
-		  ft_printf_string.c \
-		  ft_printf_udec.c \
-		  ft_printf.c
-		
-SRCS_B = ft_lstadd_back.c \
-				ft_lstadd_front.c \
-				ft_lstclear.c \
-				ft_lstdelone.c \
-				ft_lstiter.c \
-				ft_lstlast.c \
-				ft_lstmap.c \
-				ft_lstnew.c \
-				ft_lstsize.c
+		  ft_toupper.c	
 
 OBJS = $(SRCS:.c=.o)
-
-BONUS_OBJS = $(SRCS_B:.c=.o)
 
 all:			$(NAME)
 
@@ -79,14 +76,11 @@ $(NAME):		$(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 
 fclean:			clean
 	$(RM) $(NAME)
 
 re:				fclean $(NAME)
 
-bonus:			$(OBJS) $(BONUS_OBJS)
-	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
-
-.PHONY:			 all bonus clean fclean re
+.PHONY:			 all clean fclean re
