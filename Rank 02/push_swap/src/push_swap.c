@@ -12,58 +12,33 @@
 
 #include "push_swap.h"
 
-int	ps_check_if_int(char *input)
-{
-	int		i;
-	int		num;
-
-	i = 0;
-	while (input[i] != '\0')
-	{
-		if (!(input[i] >= 48 && input[i] <= 57))
-			return (0);
-		i++;
-	}
-	if (num > 2147483647 || num < -2147483648)
-		return (0);
-	else
-		return (1);
-}
-
-int	*ps_check_input(int args, char **input)
-{
-	int	i;
-	int	j;
-	int	num;
-	int	*stacka;
-
-	i = (args - 1);
-	j = 0;
-	while (i > 0)
-	{
-		if (ps_check_if_int(input[i]))
-		{
-			
-		}
-		else
-		{
-			write(2, "Error\n", 6);
-			break ;
-		}
-	}
-	return (stacka);
-}
-
 int	main(int argc, char **argv)
 {
-	int	*stacka;
+	int			i;
+	int			j;
+	int			n;
+	static int	*stacka;
 
+	i = 1;
+	j = 0;
 	if (argc >= 2)
 	{
-		if (ps_check_input(argc, argv))
+		if (ps_check_input(argc, argv) == 1)
 		{
-			stacka = ps_check_input(argc, argv);
+			while (i < argc)
+			{
+				stacka[j] = ft_atoi(argv[i]);
+				i++;
+				j++;
+			}
+			i = 0;
+			while (stacka[i])
+			{
+				ft_printf("Position number %i: %i\n", i, stacka[i]);
+				i++;
+			}
 		}
+		else
+			write(2, "Error\n", 6);
 	}
-	return (0);
 }

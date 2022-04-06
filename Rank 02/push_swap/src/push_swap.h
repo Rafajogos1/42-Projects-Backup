@@ -15,4 +15,9 @@
 
 # include "../libft/libft.h"
 
+/* Verify */
+int	ps_check_if_int(char *input);
+int ps_check_if_repeat(int args, char **input);
+int	ps_check_input(int args, char **input);
+
 #endif
