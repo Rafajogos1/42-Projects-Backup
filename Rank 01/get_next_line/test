@@ -1,0 +1,8 @@
+"get_next_line" reads a file descriptor line by line
+Emplty lines are considered too:
+
+See?
+As long as you give it a file descriptor and a buffer it should work nicely.
+Heres's an almost empty line with a word in the middle.
+                    word
+     Since it only stops reading until it finds the "\n" character, it will be fine.
