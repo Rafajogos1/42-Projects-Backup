@@ -1,45 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_instructions.c                           :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/07 11:54:19 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:40:18 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	*ps_sa(int *stacka)
+/* This function creates stack a with the given arguments */
+int	*ps_make_stacka(int args, char **input)
 {
 	int	i;
+	int	j;
+	int	*stacka;
 
-	if (ps_check_arg_num(stacka) > 1)
+	i = (args - 1);
+	j = 0;
+	stacka = malloc(sizeof(int *) * (args - 1));
+	if (!stacka)
+		return (0);
+	while (i > 0 && input[i])
 	{
-		i = stacka[ps_check_arg_num(stacka) - 1];
-		stacka[ps_check_arg_num(stacka) - 1] = stacka[ps_check_arg_num(stacka) - 2];
-		stacka[ps_check_arg_num(stacka) - 2] = i;
+		stacka[j] = ft_atoi(input[i]);
+		j++;
+		i--;
 	}
 	return (stacka);
+	free (stacka);
 }
 
-int	*ps_sb(int *stackb)
+/* This function creates stack b */
+int	*ps_make_stackb(void)
+{
+	int	*stackb;
+
+	stackb = malloc(sizeof(int *));
+	if (!stackb)
+		return (0);
+	return (stackb);
+	free (stackb);
+}
+
+/* This function checks the number of arguments in the stack */
+int	ps_check_arg_num(int *stack)
 {
 	int	i;
 
-	if (ps_check_arg_num(stackb) > 1)
-	{
-		i = stackb[ps_check_arg_num(stackb) - 1];
-		stackb[ps_check_arg_num(stackb) - 1] = stackb[ps_check_arg_num(stackb) - 2];
-		stackb[ps_check_arg_num(stackb) - 2] = i;
-	}
-	return (stackb);
-}
-
-void	ps_ss(int *stacka, int *stackb)
-{
-	stacka = ps_sa(stacka);
-	stackb = ps_sb(stackb);
+	i = 0;
+	while (stack[i])
+		i++;
+	return (i);
 }
