@@ -17,9 +17,8 @@ int	main(int argc, char **argv)
 	static int	*stacka;
 	int			*stackb;
 	int			i;
-	int			j;
 
-	if (argc >= 2)
+	if (argc > 2)
 	{
 		if (ps_check_input(argc, argv) == 1)
 		{
@@ -27,24 +26,6 @@ int	main(int argc, char **argv)
 			stackb = ps_make_stackb();
 			stackb[0] = 20;
 			stackb[1] = 10;
-			ps_ss(stacka, stackb);
-			i = 0;
-			j = 1;
-			while (stacka[i])
-			{
-				ft_printf("Position %i: %i\n", j, stacka[i]);
-				j++;
-				i++;
-			}
-			ft_printf("\n");
-			i = 0;
-			j = 1;
-			while (stackb[i])
-			{
-				ft_printf("Position %i: %i\n", j, stackb[i]);
-				j++;
-				i++;
-			}
 		}
 		else
 			write(2, "Error\n", 6);

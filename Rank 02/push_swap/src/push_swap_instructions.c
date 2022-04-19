@@ -18,9 +18,9 @@ int	*ps_sa(int *stacka)
 
 	if (ps_check_arg_num(stacka) > 1)
 	{
-		i = stacka[ps_check_arg_num(stacka) - 1];
-		stacka[ps_check_arg_num(stacka) - 1] = stacka[ps_check_arg_num(stacka) - 2];
-		stacka[ps_check_arg_num(stacka) - 2] = i;
+		i = stacka[0];
+		stacka[0] = stacka[1];
+		stacka[1] = i;
 	}
 	return (stacka);
 }
@@ -31,9 +31,9 @@ int	*ps_sb(int *stackb)
 
 	if (ps_check_arg_num(stackb) > 1)
 	{
-		i = stackb[ps_check_arg_num(stackb) - 1];
-		stackb[ps_check_arg_num(stackb) - 1] = stackb[ps_check_arg_num(stackb) - 2];
-		stackb[ps_check_arg_num(stackb) - 2] = i;
+		i = stackb[0];
+		stackb[0] = stackb[1];
+		stackb[1] = i;
 	}
 	return (stackb);
 }

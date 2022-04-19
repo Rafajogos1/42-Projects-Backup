@@ -85,7 +85,7 @@ int	ps_check_if_repeat(int args, char **input)
 	return (1);
 }
 
-/* This function checks if the input is valid using the functions above*/
+/* This function checks if the input is valid*/
 int	ps_check_input(int args, char **input)
 {
 	int	i;

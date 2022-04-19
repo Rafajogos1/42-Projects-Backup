@@ -18,16 +18,16 @@ int	*ps_make_stacka(int args, char **input)
 	int	j;
 	int	*stacka;
 
-	i = (args - 1);
+	i = 1;
 	j = 0;
 	stacka = malloc(sizeof(int *) * (args - 1));
 	if (!stacka)
 		return (0);
-	while (i > 0 && input[i])
+	while (i < args && input[i])
 	{
 		stacka[j] = ft_atoi(input[i]);
 		j++;
-		i--;
+		i++;
 	}
 	return (stacka);
 	free (stacka);
