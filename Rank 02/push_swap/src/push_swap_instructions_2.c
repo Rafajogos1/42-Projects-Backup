@@ -1,48 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_instructions_2.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/20 13:09:51 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/20 13:09:30 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+/* ra */
+int	*ps_ra(int	*stacka)
 {
-	int	*stacka;
-	int	*stackb;
-	int	i;
+	int	num;
+	int	args;
 
-	if (argc >= 2)
+	num = stacka[0];
+	args = (ps_check_arg_num(stacka) - 1);
+	if (ps_check_arg_num(stacka) > 1)
 	{
-		if (ps_check_input(argc, argv) == 1)
-		{
-			stacka = ps_make_stacka(argc, argv);
-			stackb = ps_make_stackb(argc);
-			stackb[0] = 10;
-			stackb[1] = 20;
-			i = 0;
-			while (stacka[i])
-			{
-				ft_printf("%i\n", stacka[i]);
-				i++;
-			}
-			ft_printf("\n");
-			i = 0;
-			while (stackb[i])
-			{
-				ft_printf("%i\n", stackb[i]);
-				i++;
-			}
-		}
-		else
-			write(2, "Error\n", 6);
+		stacka = ps_push_rev(stacka);
+		stacka[args] = num;
 	}
-	free(stacka);
-	free(stackb);
+	return (stacka);
+}
+
+/* rb */
+int	*ps_rb(int	*stackb)
+{
+	int	num;
+	int	args;
+
+	num = stackb[0];
+	args = (ps_check_arg_num(stackb) - 1);
+	if (ps_check_arg_num(stackb) > 1)
+	{
+		stackb = ps_push_rev(stackb);
+		stackb[args] = num;
+	}
+	return (stackb);
 }
