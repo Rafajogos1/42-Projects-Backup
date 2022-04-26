@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/20 13:00:55 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/26 16:55:33 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	ps_pa(int *stacka, int *stackb);
 void	ps_pb(int *stacka, int *stackb);
 int		*ps_ra(int	*stacka);
 int		*ps_rb(int	*stackb);
+void	ps_rr(int *stacka, int *stackb);
+int		*ps_rra(int *stacka);
+int		*ps_rrb(int *stackb);
+void	ps_rrr(int *stacka, int *stackb);
 
 /* Utils */
 int		ps_check_arg_num(int *stack);
