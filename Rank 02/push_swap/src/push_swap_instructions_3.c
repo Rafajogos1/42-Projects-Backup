@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/26 16:56:54 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:13:16 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 #include "push_swap.h"
 
-/* rrr */
+/* rrr (rra and rrb at the same time) */
 void	ps_rrr(int *stacka, int *stackb)
 {
 	stacka = ps_rra(stacka);
 	stackb = ps_rrb(stackb);
+	ft_printf("rrr\n");
 }

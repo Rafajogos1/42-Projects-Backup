@@ -1,51 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_cases.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/27 11:07:19 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:01:08 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_count(int *stacka, int args)
+/* With two numbers */
+void	ps_two(int *stacka)
 {
-	int		*stackb;
-
-	stackb = ps_make_stackb(args);
-	if (args == 2)
-		ps_two(stacka);
-	if (args == 3)
-		ps_three(stacka);
-	free(stackb);
+	stacka = ps_sa(stacka);
 }
 
-void	push_swap(int *stacka, int ac)
+/* With three numbers */
+void	ps_three(int *stacka)
 {
-	int		args;
-
-	args = (ac - 1);
-	ps_count(stacka, args);
-}
-
-int	main(int argc, char **argv)
-{
-	static int	*stacka;
-
-	if (argc >= 2)
+	if ((stacka[0] > stacka[1]))
 	{
-		if (ps_check_input(argc, argv) == 1)
+		if ((stacka[0] < stacka[2]) && (stacka[1] < stacka[2]))
+			stacka = ps_sa(stacka);
+		if ((stacka[0] > stacka[2]) && (stacka[1] < stacka[2]))
+			stacka = ps_ra(stacka);
+		if (stacka[1] > stacka[2])
 		{
-			stacka = ps_make_stacka(argc, argv);
-			if (ps_check_sort(stacka) == 0)
-				push_swap(stacka, argc);
+			stacka = ps_sa(stacka);
+			stacka = ps_rra(stacka);
 		}
-		else
-			write(2, "Error\n", 6);
 	}
-	free(stacka);
+	if ((stacka[0] < stacka[1]))
+	{
+		if (stacka[0] < stacka[2])
+		{
+			stacka = ps_sa(stacka);
+			stacka = ps_ra(stacka);
+		}
+		if (stacka[0] > stacka[2])
+			stacka = ps_rra(stacka);
+	}
 }

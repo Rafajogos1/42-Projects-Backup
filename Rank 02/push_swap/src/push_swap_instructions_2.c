@@ -6,13 +6,13 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/26 16:54:32 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:13:10 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* ra */
+/* ra (rotate a) */
 int	*ps_ra(int	*stacka)
 {
 	int	num;
@@ -25,10 +25,11 @@ int	*ps_ra(int	*stacka)
 		stacka = ps_push_rev(stacka);
 		stacka[args] = num;
 	}
+	ft_printf("ra\n");
 	return (stacka);
 }
 
-/* rb */
+/* rb (rotate b) */
 int	*ps_rb(int	*stackb)
 {
 	int	num;
@@ -41,17 +42,19 @@ int	*ps_rb(int	*stackb)
 		stackb = ps_push_rev(stackb);
 		stackb[args] = num;
 	}
+	ft_printf("rb\n");
 	return (stackb);
 }
 
-/* rr */
+/* rr (ra and rb at the same time) */
 void	ps_rr(int *stacka, int *stackb)
 {
 	stacka = ps_ra(stacka);
 	stackb = ps_rb(stackb);
+	ft_printf("rr\n");
 }
 
-/* rra */
+/* rra (reverse rotate a) */
 int	*ps_rra(int *stacka)
 {
 	int	num;
@@ -65,10 +68,11 @@ int	*ps_rra(int *stacka)
 		stacka[args + 1] = 0;
 		stacka[0] = num;
 	}
+	ft_printf("rra\n");
 	return (stacka);
 }
 
-/* rrb */
+/* rrb (reverse rotate b) */
 int	*ps_rrb(int *stackb)
 {
 	int	num;
@@ -82,5 +86,6 @@ int	*ps_rrb(int *stackb)
 		stackb[args + 1] = 0;
 		stackb[0] = num;
 	}
+	ft_printf("rrb\n");
 	return (stackb);
 }

@@ -6,13 +6,13 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/20 12:50:08 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:12:57 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* sa */
+/* sa (swap a)*/
 int	*ps_sa(int *stacka)
 {
 	int	i;
@@ -23,10 +23,11 @@ int	*ps_sa(int *stacka)
 		stacka[0] = stacka[1];
 		stacka[1] = i;
 	}
+	ft_printf("sa\n");
 	return (stacka);
 }
 
-/* sb */
+/* sb (swap b) */
 int	*ps_sb(int *stackb)
 {
 	int	i;
@@ -37,17 +38,19 @@ int	*ps_sb(int *stackb)
 		stackb[0] = stackb[1];
 		stackb[1] = i;
 	}
+	ft_printf("sb\n");
 	return (stackb);
 }
 
-/* ss */
+/* ss (sa and sb at the same time) */
 void	ps_ss(int *stacka, int *stackb)
 {
 	stacka = ps_sa(stacka);
 	stackb = ps_sb(stackb);
+	ft_printf("ss\n");
 }
 
-/* pa */
+/* pa (push a) */
 void	ps_pa(int *stacka, int *stackb)
 {
 	int	btop;
@@ -61,9 +64,10 @@ void	ps_pa(int *stacka, int *stackb)
 		stacka[0] = btop;
 		stackb = ps_push_rev(stackb);
 	}
+	ft_printf("pa\n");
 }
 
-/* pb */
+/* pb (push b) */
 void	ps_pb(int *stacka, int *stackb)
 {
 	int	atop;
@@ -77,4 +81,5 @@ void	ps_pb(int *stacka, int *stackb)
 		stackb[0] = atop;
 		stacka = ps_push_rev(stacka);
 	}
+	ft_printf("pb\n");
 }

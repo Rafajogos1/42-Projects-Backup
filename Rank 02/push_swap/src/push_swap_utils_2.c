@@ -1,51 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/27 11:07:19 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/04/27 11:04:19 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_count(int *stacka, int args)
+/* This function checks if the original stack a is already sorted */
+int	ps_check_sort(int *stacka)
 {
-	int		*stackb;
+	int	i;
+	int	sort;
 
-	stackb = ps_make_stackb(args);
-	if (args == 2)
-		ps_two(stacka);
-	if (args == 3)
-		ps_three(stacka);
-	free(stackb);
-}
-
-void	push_swap(int *stacka, int ac)
-{
-	int		args;
-
-	args = (ac - 1);
-	ps_count(stacka, args);
-}
-
-int	main(int argc, char **argv)
-{
-	static int	*stacka;
-
-	if (argc >= 2)
+	i = 0;
+	sort = 1;
+	while (stacka[i])
 	{
-		if (ps_check_input(argc, argv) == 1)
-		{
-			stacka = ps_make_stacka(argc, argv);
-			if (ps_check_sort(stacka) == 0)
-				push_swap(stacka, argc);
-		}
-		else
-			write(2, "Error\n", 6);
+		if ((stacka[i] > stacka[i + 1]) && stacka[i + 1] != 0)
+			sort = 0;
+		i++;
 	}
-	free(stacka);
+	if (sort == 0)
+		return (0);
+	else
+		return (1);
 }
