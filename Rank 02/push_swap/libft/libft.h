@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:27:56 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/06 10:53:03 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:08:09 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdint.h>
 
 /*Mandatory*/
 
