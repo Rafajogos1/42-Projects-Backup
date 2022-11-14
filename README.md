@@ -7,9 +7,9 @@ libft - Bonus included - 125%
 **Rank 01**  
 get_next_line - No bonus - 100%  
 ft_printf - No bonus - 100%  
-born2beroot - *Under Evaluation*  
+born2beroot - 100%
 
 **Rank 02**  
-push_swap - Not in Rank 02 yet  
+push_swap - Currently doing it
 
 **Included libft to use in projects**  
