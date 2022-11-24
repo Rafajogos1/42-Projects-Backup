@@ -29,4 +29,4 @@ wall "	#Architecture: $arc
 	#Connexions TCP: $ctcp ESTABLISHED
 	#User log: $ulog
 	#Network: IP $ip ($mac)
-	#Sudo: $cmds cmd" # broadcast our system information on all terminals
+	#Sudo: $cmds cmd"
