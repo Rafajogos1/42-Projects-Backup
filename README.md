@@ -14,4 +14,6 @@ push_swap - Currently doing it
 minitalk - Currently doing it  
 
 **Included libft to use in projects**  
-*(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*
+*(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*  
+
+If you're checking my projects as guide, I do not recommend using the ones that say "Currently doing it", as they are not finnished and may change a lot. Also, keep in mind that you're not actually learning anything by checking other's codes, so please try not to make this a habit. Good luck.  
