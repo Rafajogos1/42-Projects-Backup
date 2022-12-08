@@ -11,7 +11,7 @@ born2beroot - 100%
 
 **Rank 02**  
 push_swap - Currently doing it  
-minitalk - Currently doing it  
+minitalk - Currently doing it (this one is in a really messy state)  
 
 **Included libft to use in projects**  
 *(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*  
