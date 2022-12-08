@@ -6,14 +6,14 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/27 11:13:10 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:40:04 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* ra (rotate a) */
-int	*ps_ra(int	*stacka)
+long	*ps_ra(long	*stacka)
 {
 	int	num;
 	int	args;
@@ -30,7 +30,7 @@ int	*ps_ra(int	*stacka)
 }
 
 /* rb (rotate b) */
-int	*ps_rb(int	*stackb)
+long	*ps_rb(long	*stackb)
 {
 	int	num;
 	int	args;
@@ -47,7 +47,7 @@ int	*ps_rb(int	*stackb)
 }
 
 /* rr (ra and rb at the same time) */
-void	ps_rr(int *stacka, int *stackb)
+void	ps_rr(long *stacka, long *stackb)
 {
 	stacka = ps_ra(stacka);
 	stackb = ps_rb(stackb);
@@ -55,7 +55,7 @@ void	ps_rr(int *stacka, int *stackb)
 }
 
 /* rra (reverse rotate a) */
-int	*ps_rra(int *stacka)
+long	*ps_rra(long *stacka)
 {
 	int	num;
 	int	args;
@@ -73,7 +73,7 @@ int	*ps_rra(int *stacka)
 }
 
 /* rrb (reverse rotate b) */
-int	*ps_rrb(int *stackb)
+long	*ps_rrb(long *stackb)
 {
 	int	num;
 	int	args;

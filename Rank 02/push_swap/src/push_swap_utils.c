@@ -6,26 +6,27 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/27 09:26:29 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:14:48 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 /* This function creates stack a with the given arguments */
-int	*ps_make_stacka(int args, char **input)
+long	*ps_make_stacka(int args, char **input)
 {
-	int	i;
-	int	j;
-	int	*stacka;
+	int		i;
+	int		j;
+	long	*stacka;
 
 	i = 1;
 	j = 0;
-	stacka = malloc(sizeof(int *) * (args - 1));
+	stacka = malloc(sizeof(long *) * args);
 	if (!stacka)
 		return (0);
 	while (i < args && input[i])
 	{
-		stacka[j] = ft_atoi(input[i]);
+		if (input[i])
+		stacka[j] = ps_atoi(input[i]);
 		j++;
 		i++;
 	}
@@ -33,18 +34,18 @@ int	*ps_make_stacka(int args, char **input)
 }
 
 /* This function creates stack b */
-int	*ps_make_stackb(int args)
+long	*ps_make_stackb(int args)
 {
-	int	*stackb;
+	long	*stackb;
 
-	stackb = malloc(sizeof(int *) * (args - 1));
+	stackb = malloc(sizeof(long *) * args);
 	if (!stackb)
 		return (0);
 	return (stackb);
 }
 
 /* This function checks the number of arguments in the stack */
-int	ps_check_arg_num(int *stack)
+int	ps_check_arg_num(long *stack)
 {
 	int	i;
 
@@ -56,7 +57,7 @@ int	ps_check_arg_num(int *stack)
 
 /* This function increases all the elements indexes by one
 and sets the firt one (index = 0) to 1 (only as a placeholder) */
-int	*ps_push(int *stack)
+long	*ps_push(long *stack)
 {
 	int	i;
 	int	j;
@@ -76,7 +77,7 @@ int	*ps_push(int *stack)
 
 /* This function decreases all the elements indexes by one 
 and deletes the first one */
-int	*ps_push_rev(int *stack)
+long	*ps_push_rev(long *stack)
 {
 	int	i;
 	int	j;

@@ -6,14 +6,14 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/04/27 11:12:57 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:18:27 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* sa (swap a)*/
-int	*ps_sa(int *stacka)
+long	*ps_sa(long *stacka)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ int	*ps_sa(int *stacka)
 }
 
 /* sb (swap b) */
-int	*ps_sb(int *stackb)
+long	*ps_sb(long *stackb)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	*ps_sb(int *stackb)
 }
 
 /* ss (sa and sb at the same time) */
-void	ps_ss(int *stacka, int *stackb)
+void	ps_ss(long *stacka, long *stackb)
 {
 	stacka = ps_sa(stacka);
 	stackb = ps_sb(stackb);
@@ -51,12 +51,10 @@ void	ps_ss(int *stacka, int *stackb)
 }
 
 /* pa (push a) */
-void	ps_pa(int *stacka, int *stackb)
+void	ps_pa(long *stacka, long *stackb)
 {
 	int	btop;
-	int	anum;
 
-	anum = (ps_check_arg_num(stacka) + 1);
 	if (ps_check_arg_num(stackb) > 0)
 	{
 		btop = stackb[0];
@@ -68,12 +66,10 @@ void	ps_pa(int *stacka, int *stackb)
 }
 
 /* pb (push b) */
-void	ps_pb(int *stacka, int *stackb)
+void	ps_pb(long *stacka, long *stackb)
 {
 	int	atop;
-	int	bnum;
 
-	bnum = (ps_check_arg_num(stackb) + 1);
 	if (ps_check_arg_num(stacka) > 0)
 	{
 		atop = stacka[0];
