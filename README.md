@@ -10,7 +10,8 @@ ft_printf - No bonus - 100%
 born2beroot - 100%
 
 **Rank 02**  
-push_swap - Currently doing it
+push_swap - Currently doing it  
+minitalk - Currently doing it  
 
 **Included libft to use in projects**  
 *(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*
