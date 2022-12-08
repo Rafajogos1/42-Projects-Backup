@@ -16,4 +16,4 @@ minitalk - Currently doing it
 **Included libft to use in projects**  
 *(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*  
 
-If you're checking my projects as guide, I do not recommend using the ones that say "Currently doing it", as they are not finnished and may change a lot. Also, keep in mind that you're not actually learning anything by checking other people's codes, so please try not to make this a habit. Good luck.  
+If you're checking my projects as guide, I do not recommend using the ones that say "Currently doing it", as they are not finnished and may change a lot. **Also, keep in mind that you're not actually learning anything by checking other people's codes, so, even though no one is going to stop you from doing it please try not to make this a habit.** Good luck.  
