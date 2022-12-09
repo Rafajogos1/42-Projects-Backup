@@ -1,23 +1,59 @@
 #include "minitalk.h"
 
+static void	ft_restart_variables(int *len, char **str, int *i)
+{
+	*len = 0;
+	if (str)
+	{
+		ft_putendl_fd(*str, 1);
+		free(*str);
+		*str = 0;
+	}
+	*i = 0;
+}
+
+static void	mt_receive_len(int *bit, char **str, int *len, int signal)
+{
+	static int	str_len = 0;
+
+	if (signal == SIGUSR2)
+		str_len += ft_power(2, *bit);
+	if (*bit == 31)
+	{
+		*len = 1;
+		*str = ft_calloc(str_len + 1, sizeof(char));
+		*bit = 0;
+		str_len = 0;
+		return ;
+	}
+	(*bit)++;
+}
+
 static void	mt_recieve(int signal)
 {
 	static int	c = 0;
 	static int	bit = 0;
+	static int	len = 0;
 	static char	*str = 0;
 	static int	i = 0;
 
-	if (signal == SIGUSR2)
-		c += ft_power(2, bit);
-	if (bit == 7)
-	{	
-		bit = 0;
-		if (c == 0)
-			ft_printf("%s\n", str);
-		c = 0;
-		return ;
+	if (!len)
+		mt_receive_len(&bit, &str, &len, signal);
+	else
+	{
+		if (signal == SIGUSR2)
+			c += ft_power(2, bit);
+		if (bit == 7)
+		{	
+			str[i++] = c;
+			bit = 0;
+			if (c == 0)
+				return (ft_restart_variables(&len, &str, &i));
+			c = 0;
+			return ;
+		}
+		bit++;
 	}
-	bit++;
 }
 
 int main(void)
@@ -29,5 +65,5 @@ int main(void)
 	signal(SIGUSR1, mt_recieve);
 	signal(SIGUSR2, mt_recieve);
 	while (1)
-		usleep(100);
+		usleep(500);
 }

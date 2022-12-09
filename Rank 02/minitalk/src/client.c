@@ -1,5 +1,22 @@
 #include "minitalk.h"
 
+static void	mt_send_len(int len, int pid)
+{
+	int	bit;
+
+	bit = 0;
+	while (bit < 32)
+	{
+		if (len & 0x01)
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		len = len >> 1;
+		bit++;
+		usleep(500);
+	}
+}
+
 static void	mt_send_char(unsigned char c, int pid)
 {
 	int	bit;
@@ -13,7 +30,7 @@ static void	mt_send_char(unsigned char c, int pid)
 			kill(pid, SIGUSR1);
 		c = c >> 1;
 		bit++;
-		usleep(100);
+		usleep(500);
 	}
 }
 
@@ -32,6 +49,7 @@ int	main(int ac, char **av)
 		str = av[2];
 		if (pid <= 0)
 			return (-1);
+		mt_send_len(ft_strlen(str), pid);
 		while (str[i])
 		{
 			mt_send_char(str[i], pid);
