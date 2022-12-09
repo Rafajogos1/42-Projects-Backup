@@ -48,7 +48,7 @@ static void	mt_recieve(int signal)
 			str[i++] = c;
 			bit = 0;
 			if (c == 0)
-				return (ft_reset(&len, &str, &i));
+				return (mt_reset(&len, &str, &i));
 			c = 0;
 			return ;
 		}
