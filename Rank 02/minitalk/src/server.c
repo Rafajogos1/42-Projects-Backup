@@ -1,6 +1,6 @@
 #include "minitalk.h"
 
-static void	ft_restart_variables(int *len, char **str, int *i)
+static void	mt_reset(int *len, char **str, int *i)
 {
 	*len = 0;
 	if (str)
@@ -48,7 +48,7 @@ static void	mt_recieve(int signal)
 			str[i++] = c;
 			bit = 0;
 			if (c == 0)
-				return (ft_restart_variables(&len, &str, &i));
+				return (ft_reset(&len, &str, &i));
 			c = 0;
 			return ;
 		}
