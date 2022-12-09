@@ -78,6 +78,10 @@ t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
 
 /*** Extra ***/
+
+/** Math **/
+int				ft_power(int num, int power);
+
 /** ft_printf **/
 /* Printf */
 int				printf_format(va_list args, const char format);

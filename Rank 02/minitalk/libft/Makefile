@@ -31,6 +31,7 @@ SRCS = ft_atoi.c \
 		  ft_memcpy.c \
 		  ft_memmove.c \
 		  ft_memset.c \
+		  ft_power.c \
 		  ft_lstadd_back.c \
 		  ft_lstadd_front.c \
 		  ft_lstclear.c \
