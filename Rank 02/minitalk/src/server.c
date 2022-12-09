@@ -65,5 +65,5 @@ int main(void)
 	signal(SIGUSR1, mt_recieve);
 	signal(SIGUSR2, mt_recieve);
 	while (1)
-		usleep(500);
+		pause();
 }

@@ -13,7 +13,7 @@ static void	mt_send_len(int len, int pid)
 			kill(pid, SIGUSR1);
 		len = len >> 1;
 		bit++;
-		usleep(500);
+		usleep(100);
 	}
 }
 
@@ -30,7 +30,7 @@ static void	mt_send_char(unsigned char c, int pid)
 			kill(pid, SIGUSR1);
 		c = c >> 1;
 		bit++;
-		usleep(500);
+		usleep(100);
 	}
 }
 
