@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/10 17:09:10 by ramartin          #+#    #+#             */
+/*   Updated: 2022/12/10 17:09:11 by ramartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 static void	mt_reset(int *len, char **str, int *i)
@@ -56,7 +68,7 @@ static void	mt_recieve(int signal)
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	char				*pid;
 
