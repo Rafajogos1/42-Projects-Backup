@@ -14,8 +14,10 @@ void  *mallloc_with_len(int len)
   char  *str;  
   
   str = malloc(sizeof(char *) * len);  
+  /* malloc protection starts here */
   if (!str)  
-    return (NULL);  
+    return (NULL);
+  /* malloc protection ends here */
   return ((void *)str);  
 }
 ```
