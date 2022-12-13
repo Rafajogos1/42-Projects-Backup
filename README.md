@@ -6,8 +6,8 @@ If you're using my projects as guide, I do not recommend using the ones that say
 libft - Bonus included - 125%  
 
 **Rank 01**  
-get_next_line - No bonus - 100%  
-ft_printf - No bonus - 100%  
+get_next_line - 100%  
+ft_printf - 100%  
 born2beroot - 100%
 
 **Rank 02**  
