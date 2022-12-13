@@ -21,5 +21,5 @@ void  *mallloc_with_len(int len)
   return ((void *)str);  
 }
 ```
-The tricky part is making a Makefile for the first time. A Makefile, makes it much easier to do commands that you would've made one by one in the terminal. You will notice that your Makefile will compile your files into objects so they can be used later. If a `main` is included, it will be able to compilate a program. Essentially, the Makefile is doing the `gcc` part for you and the resulting program will be in a exportable case.  
+The tricky part is making a Makefile for the first time. A Makefile, makes it much easier to do commands that you would've made one by one in the terminal. You will notice that your Makefile will compile your files into objects so they can be used later. If a `main` is included, it will be able to compilate a program. Essentially, the Makefile is doing the `gcc` part for you and the resulting program will be in a exportable state.  
 After validating this project, you will be able to use it on the projects it is allowed to be used, however, you may not need many of them, and you may need to modify them. You can and should add new functions that you may find necessary.  
