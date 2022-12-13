@@ -1,4 +1,4 @@
-#Minitalk  
+# Minitalk  
 In this project you have to create a client that sends a string to a server using only UNIX signals.  
 
 -The server and the client must be compiled by the Makefile and should be called "server" and "client" respectively.
