@@ -3,7 +3,7 @@
 In this project you will you create your own C library.   
 -You will recreate various existing C functions and some new ones.  
 
-*Bonus includes creating a struct and functions that work with that type of struct you created.*  
+*Bonus includes creating a `struct` and functions that work with that type of `struct` you created.*  
 
 There isn't much to say about this project as the functions are fairly simple and there are a lot of them. One thing I want to say, though, is that it is important to to start optimizing your code, as it will be extremly important later, specially due to the *norminette*.  
 It is also important that you **always** protect your memory alloactions.  
