@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/06 19:02:20 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:43:29 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ long	ps_check_min(long *stacka)
 	return (min);
 }
 
+/* This function checks the number that comes after num*/
 long	ps_check_first_bigger(long *stacka, long num)
 {
 	int		i;
@@ -81,4 +82,29 @@ void	ps_five_helper_3(long *stacka, long *stackb)
 			stacka = ps_rra(stacka);
 	}
 	ps_pa(stacka, stackb);
+}
+
+/* This fucntion calculates the appropiate chunk limits*/
+long	*ps_chunk_limits(long *stacka, int chunks)
+{
+	int		args;
+	long	median;
+	long	*stack;
+	long	*lims;
+
+	args = ps_check_arg_num(stacka);
+	stack = stacka;
+	lims = malloc(sizeof(long *) * (chunks - 1));
+	if (!lims)
+		return (0);
+	while (ps_check_sort(stack) == 0)
+		ps_sort(stack);
+	if ((args % 2) == 0)
+	{
+		median = ((stacka[(args / 2)] + stacka[(args / 2) + 1]) / 2);
+	}
+	else
+		median = (stacka[(args / 2)]);
+	ps_lims(lims, chunks, median, ps_check_max(stacka));
+	return (lims);
 }

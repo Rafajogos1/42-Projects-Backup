@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/06 18:56:41 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:32:27 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,15 @@ long	*ps_five_helper_2(long *stacka)
 when there's 4 or 5 numbers*/
 void	ps_five_helper(long *stacka, long *stackb)
 {
-	int	i;
+	int		i;
 
 	i = ps_check_arg_num(stacka);
-	if ((stackb[0] < stacka[0]))
-		ps_pa(stacka, stackb);
-	else if ((stackb[0] > stacka[i - 1]))
+	if (ps_check_sort(stacka) == 1)
 	{
-		ps_pa(stacka, stackb);
-		if (!(stackb[0]))
-			stacka = ps_ra(stacka);
+		if ((stackb[0] < stacka[0]) || (stackb[0] > stacka[i - 1]))
+			ps_pa(stacka, stackb);
+		else
+			ps_five_helper_3(stacka, stackb);
 	}
 	else
 		ps_five_helper_3(stacka, stackb);

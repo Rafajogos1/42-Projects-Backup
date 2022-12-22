@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/05 17:01:40 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:37:53 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	ps_count(long *stacka, int args)
 		ps_three(stacka);
 	if (args > 3 && args <= 5)
 		ps_five(stacka, stackb);
+	if (args > 5 && args <= 100)
+		ps_hundred(stacka, stackb);
 }
 
 void	push_swap(long *stacka, int ac)
