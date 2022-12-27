@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/22 18:02:37 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:00:52 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ps_five(long *stacka, long *stackb)
 }
 
 /* With up to a hundred numbers */
-void	ps_hundred(long *stacka, long *stackb)
+void	ps_hundred(long *stacka, long *stackb, long *stackcpy)
 {
 	long	*lims;
 	long	h1;
@@ -70,13 +70,12 @@ void	ps_hundred(long *stacka, long *stackb)
 	int		i;
 	int		j;
 
-	lims = ps_chunk_limits(stacka, 5);
+	lims = ps_chunk_limits(stackcpy, 5);
 	i = 0;
-	j = 0;
-	if (!stackb[0])
-		ft_printf("\n");
+	h2 = 0;
 	while (stacka[0])
 	{
+		j = 0;
 		h1 = ps_h1(stacka, lims[i]);
 		if (h1 == 0)
 			i++;
@@ -84,6 +83,11 @@ void	ps_hundred(long *stacka, long *stackb)
 		{
 			h2 = ps_h2(stacka, lims[i]);
 			ps_chunk_to_b(stacka, stackb, h1, h2);
+		}
+		while (stackb[j])
+		{
+			ft_printf("%i\n", stackb[j]);
+			j++;
 		}
 	}
 	free (lims);

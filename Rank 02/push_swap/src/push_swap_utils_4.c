@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/22 17:52:39 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:36:46 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,33 +71,29 @@ void	ps_lims(long *lims, int chunks, long median, long big)
 /* This function searches from the top the first number under the limit */
 long	ps_h1(long *stacka, long lim)
 {
-	long	h1;
 	int		i;
 
 	i = 0;
-	h1 = 0;
-	while (stacka[i] && (h1 == 0))
+	while (stacka[i])
 	{
-		if (stacka[i] < lim)
-			h1 = stacka[i];
+		if (stacka[i] <= lim)
+			return (stacka[i]);
 		i++;
 	}
-	return (h1);
+	return (0);
 }
 
 /* This function searches from the bottom the first number under the limit */
 long	ps_h2(long *stacka, long lim)
 {
-	long	h2;
 	int		i;
 
 	i = (ps_check_arg_num(stacka) - 1);
-	h2 = 0;
-	while (stacka[i] && (h2 == 0))
+	while (stacka[i])
 	{
-		if (stacka[i] < lim)
-			h2 = stacka[i];
+		if (stacka[i] <= lim)
+			return (stacka[i]);
 		i--;
 	}
-	return (h2);
+	return (0);
 }

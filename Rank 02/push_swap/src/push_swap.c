@@ -6,13 +6,13 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/12 17:37:53 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:50:27 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_count(long *stacka, int args)
+void	ps_count(long *stacka, int args, long *stackcpy)
 {
 	long		*stackb;
 
@@ -24,31 +24,37 @@ void	ps_count(long *stacka, int args)
 	if (args > 3 && args <= 5)
 		ps_five(stacka, stackb);
 	if (args > 5 && args <= 100)
-		ps_hundred(stacka, stackb);
+		ps_hundred(stacka, stackb, stackcpy);
+	free(stackb);
 }
 
-void	push_swap(long *stacka, int ac)
+void	push_swap(long *stacka, int ac, long *stackcpy)
 {
 	int		args;
 
 	args = (ac - 1);
-	ps_count(stacka, args);
+	ps_count(stacka, args, stackcpy);
 }
 
 int	main(int argc, char **argv)
 {
 	long	*stacka;
+	long	*stackcpy;
 
 	if (argc >= 2)
 	{
 		if (ps_check_input(argc, argv) == 1)
 		{
 			stacka = ps_make_stacka(argc, argv);
+			stackcpy = ps_make_stacka(argc, argv);
 			if (ps_check_sort(stacka) == 0)
-				push_swap(stacka, argc);
+				push_swap(stacka, argc, stackcpy);
 		}
 		else
+		{
 			write(2, "Error\n", 6);
+			return (0);
+		}
 	}
 	free(stacka);
 }

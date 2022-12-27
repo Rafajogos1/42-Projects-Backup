@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/11/29 18:14:48 by ramartin         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:49:18 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long	*ps_make_stackb(int args)
 {
 	long	*stackb;
 
-	stackb = malloc(sizeof(long *) * args);
+	stackb = malloc(sizeof(long *) * args + 1);
 	if (!stackb)
 		return (0);
 	return (stackb);
