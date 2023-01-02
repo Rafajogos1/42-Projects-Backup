@@ -6,11 +6,28 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/27 17:59:23 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:32:49 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ps_rotate_helper(long *stacka, long *stackb)
+{
+	if (stacka[0] > stackb[0])
+		ps_pb(stacka, stackb);
+	else if (stacka[0] < stackb[ps_check_arg_num(stackb) - 1])
+	{
+		ps_pb(stacka, stackb);
+		stackb = ps_rb(stackb);
+	}
+	else
+	{
+		while (stackb[0] > stacka[0])
+			stackb = ps_rb(stackb);
+		ps_pb(stacka, stackb);
+	}
+}
 
 void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 {
@@ -30,7 +47,9 @@ void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 			d2--;
 		}
 	}
-	ps_pb(stacka, stackb);
+	ps_rotate_helper(stacka, stackb);
+	while (ps_check_max(stackb) != stackb[0])
+		stackb = ps_rrb(stackb);
 }
 
 void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2)
