@@ -6,32 +6,49 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/02 17:32:49 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:03:19 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_rotate_helper(long *stacka, long *stackb)
+void	ps_return_stack_to_a(long *stacka, long *stackb)
 {
-	if (stacka[0] > stackb[0])
-		ps_pb(stacka, stackb);
-	else if (stacka[0] < stackb[ps_check_arg_num(stackb) - 1])
+	int		i;
+
+	i = 0;
+	while (stackb[i] != ps_check_max(stackb))
+		i++;
+	while (stackb[0])
 	{
-		ps_pb(stacka, stackb);
-		stackb = ps_rb(stackb);
+		while (stackb[0] != ps_check_max(stackb))
+		{
+			if (i < ((ps_check_arg_num(stackb) - 1) / 2))
+				stackb = ps_rb(stackb);
+			else
+				stackb = ps_rrb(stackb);
+		}
+		ps_pa(stacka, stackb);
 	}
-	else
+}
+
+int	ps_check_under_lim(long *stacka, long lim)
+{
+	int	i;
+
+	i = 0;
+	while (stacka[i])
 	{
-		while (stackb[0] > stacka[0])
-			stackb = ps_rb(stackb);
-		ps_pb(stacka, stackb);
+		if ((stacka[i] > lim))
+			return (1);
+		i++;
 	}
+	return (0);
 }
 
 void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 {
-	if (d1 < d2)
+	if (d1 <= d2)
 	{
 		while (d1 != 0)
 		{
@@ -47,9 +64,7 @@ void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 			d2--;
 		}
 	}
-	ps_rotate_helper(stacka, stackb);
-	while (ps_check_max(stackb) != stackb[0])
-		stackb = ps_rrb(stackb);
+	ps_pb(stacka, stackb);
 }
 
 void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2)
@@ -64,15 +79,11 @@ void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2)
 	while (stacka[i] != h1)
 		i++;
 	d1 = i;
-	if (h2 != 0)
-	{
-		while (stacka[j] != h2)
-			j++;
-		if (i <= ((ps_check_arg_num(stacka) - 1) / 2))
-			d2 = j;
-		else
-			d2 = (ps_check_arg_num(stacka) - j);
-	}
-	if (h2 != 0)
-		ps_rotate(stacka, stackb, d1, d2);
+	while (stacka[j] != h2)
+		j++;
+	if (j <= ((ps_check_arg_num(stacka) - 1) / 2))
+		d2 = j;
+	else
+		d2 = (ps_check_arg_num(stacka) - j);
+	ps_rotate(stacka, stackb, d1, d2);
 }

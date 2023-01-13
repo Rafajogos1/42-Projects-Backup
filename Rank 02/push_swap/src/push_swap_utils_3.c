@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/27 17:22:33 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:07:56 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long	ps_check_min(long *stacka)
 	return (min);
 }
 
-/* This function checks the number that comes after num*/
+/* This function checks the number that comes after num */
 long	ps_check_first_bigger(long *stacka, long num)
 {
 	int		i;
@@ -88,9 +88,10 @@ void	ps_five_helper_3(long *stacka, long *stackb)
 long	*ps_chunk_limits(long *stackcpy, int chunks)
 {
 	int		args;
-	long	median;
 	long	*lims;
+	int		i;
 
+	i = 0;
 	args = ps_check_arg_num(stackcpy);
 	lims = malloc(sizeof(long *) * (chunks - 1));
 	if (!lims)
@@ -98,11 +99,9 @@ long	*ps_chunk_limits(long *stackcpy, int chunks)
 	while (ps_check_sort(stackcpy) == 0)
 		ps_sort(stackcpy);
 	if ((args % 2) == 0)
-	{
-		median = ((stackcpy[(args / 2)] + stackcpy[(args / 2) + 1]) / 2);
-	}
+		i = (((args / 2 - 1) + (args / 2)) / 2);
 	else
-		median = (stackcpy[(args / 2)]);
-	ps_lims(lims, chunks, median, ps_check_max(stackcpy));
+		i = (args / 2);
+	lims = ps_lims(stackcpy, lims, chunks, i);
 	return (lims);
 }

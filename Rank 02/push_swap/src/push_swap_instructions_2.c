@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/11/15 17:40:04 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:50:19 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /* ra (rotate a) */
 long	*ps_ra(long	*stacka)
 {
-	int	num;
-	int	args;
+	long	num;
+	int		args;
 
 	num = stacka[0];
 	args = (ps_check_arg_num(stacka) - 1);
@@ -32,8 +32,8 @@ long	*ps_ra(long	*stacka)
 /* rb (rotate b) */
 long	*ps_rb(long	*stackb)
 {
-	int	num;
-	int	args;
+	long	num;
+	int		args;
 
 	num = stackb[0];
 	args = (ps_check_arg_num(stackb) - 1);
@@ -57,8 +57,8 @@ void	ps_rr(long *stacka, long *stackb)
 /* rra (reverse rotate a) */
 long	*ps_rra(long *stacka)
 {
-	int	num;
-	int	args;
+	long	num;
+	int		args;
 
 	args = (ps_check_arg_num(stacka) - 1);
 	num = stacka[args];
@@ -75,8 +75,8 @@ long	*ps_rra(long *stacka)
 /* rrb (reverse rotate b) */
 long	*ps_rrb(long *stackb)
 {
-	int	num;
-	int	args;
+	long	num;
+	int		args;
 
 	args = (ps_check_arg_num(stackb) - 1);
 	num = stackb[args];

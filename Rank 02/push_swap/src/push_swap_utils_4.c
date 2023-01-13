@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/27 17:36:46 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:07:49 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,29 @@ void	ps_sort(long *stack)
 }
 
 /* This function assigns the limits to the lims array */
-void	ps_lims(long *lims, int chunks, long median, long big)
+long	*ps_lims(long *stackcpy, long *lims, int chunks, int i)
 {
 	if (chunks == 5)
 	{
-		lims[0] = (median / 2);
-		lims[1] = median;
-		lims[2] = (median + (median / 2));
-		lims[3] = big;
+		lims[0] = -2147483650;
+		lims[1] = stackcpy[i / 2];
+		lims[2] = stackcpy[i];
+		lims[3] = stackcpy[i + (i / 2)];
 	}
 	else
 	{
-		lims[0] = (median / 5);
-		lims[1] = (2 * (median / 5));
-		lims[2] = (3 * (median / 5));
-		lims[3] = (4 * (median / 5));
-		lims[4] = median;
-		lims[5] = (median + ((median / 5)));
-		lims[6] = (median + 2 * ((median / 5)));
-		lims[7] = (median + 3 * ((median / 5)));
-		lims[8] = (median + 4 * ((median / 5)));
-		lims[9] = big;
+		lims[0] = -2147483650;
+		lims[1] = stackcpy[i / 5];
+		lims[2] = stackcpy[2 * (i / 5)];
+		lims[3] = stackcpy[3 * (i / 5)];
+		lims[4] = stackcpy[4 * (i / 5)];
+		lims[5] = stackcpy[i];
+		lims[6] = stackcpy[i + ((i / 5))];
+		lims[7] = stackcpy[i + 2 * ((i / 5))];
+		lims[8] = stackcpy[i + 3 * ((i / 5))];
+		lims[9] = stackcpy[i + 4 * ((i / 5))];
 	}
+	return (lims);
 }
 
 /* This function searches from the top the first number under the limit */
@@ -76,7 +77,7 @@ long	ps_h1(long *stacka, long lim)
 	i = 0;
 	while (stacka[i])
 	{
-		if (stacka[i] <= lim)
+		if ((stacka[i] > lim))
 			return (stacka[i]);
 		i++;
 	}
@@ -91,7 +92,7 @@ long	ps_h2(long *stacka, long lim)
 	i = (ps_check_arg_num(stacka) - 1);
 	while (stacka[i])
 	{
-		if (stacka[i] <= lim)
+		if ((stacka[i] > lim))
 			return (stacka[i]);
 		i--;
 	}

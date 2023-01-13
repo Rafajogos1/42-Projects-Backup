@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/02 17:26:26 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:13:13 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,20 @@ void	ps_hundred(long *stacka, long *stackb, long *stackcpy)
 	int		i;
 
 	lims = ps_chunk_limits(stackcpy, 5);
-	i = 0;
 	h2 = 0;
-	while (stacka[0])
+	i = 3;
+	if (ps_check_under_lim(stacka, lims[i]) == 0)
+			i--;
+	while ((ps_check_under_lim(stacka, lims[i]) == 1) && (i >= 0))
 	{
 		h1 = ps_h1(stacka, lims[i]);
-		if (h1 == 0)
-			i++;
-		else
+		h2 = ps_h2(stacka, lims[i]);
+		ps_chunk_to_b(stacka, stackb, h1, h2);
+		if (h1 == h2)
 		{
-			h2 = ps_h2(stacka, lims[i]);
-			ps_chunk_to_b(stacka, stackb, h1, h2);
+			ps_return_stack_to_a(stacka, stackb);
+			i--;
 		}
 	}
-	while (stackb[0])
-		ps_pa(stacka, stackb);
 	free (lims);
 }

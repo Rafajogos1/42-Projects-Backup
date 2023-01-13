@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/02 17:32:25 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:13:24 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ long	ps_check_first_bigger(long *stacka, long num);
 void	ps_five_helper_3(long *stacka, long *stackb);
 long	*ps_chunk_limits(long *stacka, int chunks);
 void	ps_sort(long *stack);
-void	ps_lims(long *lims, int chunks, long median, long big);
+long	*ps_lims(long *stackcpy, long *lims, int chunks, int i);
 long	ps_h1(long *stacka, long lim);
 long	ps_h2(long *stacka, long lim);
-void	ps_rotate_helper(long *stacka, long *stackb);
+void	ps_return_stack_to_a(long *stacka, long *stackb);
+int		ps_check_under_lim(long *stacka, long lim);
 void	ps_rotate(long *stacka, long *stackb, int d1, int d2);
 void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2);
 

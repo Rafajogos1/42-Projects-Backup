@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/05 17:18:27 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:49:37 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ps_ss(long *stacka, long *stackb)
 /* pa (push a) */
 void	ps_pa(long *stacka, long *stackb)
 {
-	int	btop;
+	long	btop;
 
 	if (ps_check_arg_num(stackb) > 0)
 	{
@@ -68,7 +68,7 @@ void	ps_pa(long *stacka, long *stackb)
 /* pb (push b) */
 void	ps_pb(long *stacka, long *stackb)
 {
-	int	atop;
+	long	atop;
 
 	if (ps_check_arg_num(stacka) > 0)
 	{
