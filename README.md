@@ -11,7 +11,7 @@ ft_printf - 100%
 born2beroot - 100%
 
 **Rank 02**  
-push_swap - Currently doing it  
+push_swap - Awaiting evaluation  
 minitalk - Unicode support - 105% *(I did the Unicode bonus without realizing due to my code working with Unicode characters without me knowing it as I didn't do the project with the bonus in mind. Only my last evaluator noticed this, the reason why my grade isn't as high as it should be.)*
 
 **Included libft to use in projects**  
