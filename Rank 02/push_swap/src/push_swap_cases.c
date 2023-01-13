@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 11:13:13 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:05:34 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,53 @@ void	ps_five(long *stacka, long *stackb)
 void	ps_hundred(long *stacka, long *stackb, long *stackcpy)
 {
 	long	*lims;
+	long	num;
 	long	h1;
 	long	h2;
 	int		i;
 
 	lims = ps_chunk_limits(stackcpy, 5);
-	h2 = 0;
 	i = 3;
-	if (ps_check_under_lim(stacka, lims[i]) == 0)
+	num = 0;
+	if (ps_check_over_lim(stacka, lims[i], lims[i + 1]) == 0)
 			i--;
-	while ((ps_check_under_lim(stacka, lims[i]) == 1) && (i >= 0))
+	while ((ps_check_over_lim(stacka, lims[i], lims[i + 1]) == 1) && (i >= 0))
 	{
-		h1 = ps_h1(stacka, lims[i]);
-		h2 = ps_h2(stacka, lims[i]);
+		h1 = ps_h1(stacka, lims[i], lims[i + 1]);
+		h2 = ps_h2(stacka, lims[i], lims[i + 1]);
 		ps_chunk_to_b(stacka, stackb, h1, h2);
 		if (h1 == h2)
 		{
-			ps_return_stack_to_a(stacka, stackb);
+			ps_return_stack_to_a(stacka, stackb, num);
+			num = stacka[0];
+			i--;
+		}
+	}
+	free (lims);
+}
+
+void	ps_five_hundred(long *stacka, long *stackb, long *stackcpy)
+{
+	long	*lims;
+	long	num;
+	long	h1;
+	long	h2;
+	int		i;
+
+	lims = ps_chunk_limits(stackcpy, 11);
+	i = 9;
+	num = 0;
+	if (ps_check_over_lim(stacka, lims[i], lims[i + 1]) == 0)
+			i--;
+	while ((ps_check_over_lim(stacka, lims[i], lims[i + 1]) == 1) && (i >= 0))
+	{
+		h1 = ps_h1(stacka, lims[i], lims[i + 1]);
+		h2 = ps_h2(stacka, lims[i], lims[i + 1]);
+		ps_chunk_to_b(stacka, stackb, h1, h2);
+		if (h1 == h2)
+		{
+			ps_return_stack_to_a(stacka, stackb, num);
+			num = stacka[0];
 			i--;
 		}
 	}

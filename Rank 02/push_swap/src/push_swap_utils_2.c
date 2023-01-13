@@ -6,31 +6,11 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/12/12 17:32:27 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:08:07 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* This function checks if the original stack a is already sorted */
-int	ps_check_sort(long *stacka)
-{
-	int	i;
-	int	sort;
-
-	i = 0;
-	sort = 1;
-	while (stacka[i])
-	{
-		if ((stacka[i] > stacka[i + 1]) && stacka[i + 1] != 0)
-			sort = 0;
-		i++;
-	}
-	if (sort == 0)
-		return (0);
-	else
-		return (1);
-}
 
 /* This function exists due to norminette function line limit */
 long	ps_atoi_helper(long num)
@@ -90,6 +70,29 @@ long	*ps_five_helper_2(long *stacka)
 			stacka = ps_rra(stacka);
 	}
 	return (stacka);
+}
+
+/* Thank you Norminette */
+void	ps_five_helper_3(long *stacka, long *stackb)
+{
+	long	num;
+	int		i;
+
+	num = ps_check_first_bigger(stacka, stackb[0]);
+	i = 0;
+	while (stacka[i] != num)
+		i++;
+	if (i < 2)
+	{
+		while (stacka[0] != num)
+			stacka = ps_ra(stacka);
+	}
+	else
+	{
+		while (stacka[0] != num)
+			stacka = ps_rra(stacka);
+	}
+	ps_pa(stacka, stackb);
 }
 
 /* This function puts the remaining numbers back in stacka

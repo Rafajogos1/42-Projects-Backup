@@ -6,21 +6,49 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 11:03:19 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:31:13 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_return_stack_to_a(long *stacka, long *stackb)
+long	*ps_put_chunk_on_top(long *stacka, long num)
+{
+	int	i;
+	int	inst;
+
+	i = 0;
+	inst = 0;
+	while (stacka[i] != num)
+		i++;
+	if (i < ((ps_check_arg_num(stacka) - 1) / 2))
+	{
+		i = (ps_check_arg_num(stacka) - 1);
+		inst = 1;
+	}
+	if (num != 0)
+	{
+		while (stacka[0] != num)
+		{
+			if (inst == 0)
+				stacka = ps_rra(stacka);
+			else
+				stacka = ps_ra(stacka);
+		}
+	}
+	return (stacka);
+}
+
+void	ps_return_stack_to_a(long *stacka, long *stackb, long num)
 {
 	int		i;
 
 	i = 0;
-	while (stackb[i] != ps_check_max(stackb))
-		i++;
+	ps_put_chunk_on_top(stacka, num);
 	while (stackb[0])
 	{
+		while (stackb[i] < stackb[i + 1])
+			i++;
 		while (stackb[0] != ps_check_max(stackb))
 		{
 			if (i < ((ps_check_arg_num(stackb) - 1) / 2))
@@ -32,14 +60,14 @@ void	ps_return_stack_to_a(long *stacka, long *stackb)
 	}
 }
 
-int	ps_check_under_lim(long *stacka, long lim)
+int	ps_check_over_lim(long *stacka, long lim, long lim2)
 {
 	int	i;
 
 	i = 0;
 	while (stacka[i])
 	{
-		if ((stacka[i] > lim))
+		if ((stacka[i] >= lim) && (stacka[i] < lim2))
 			return (1);
 		i++;
 	}

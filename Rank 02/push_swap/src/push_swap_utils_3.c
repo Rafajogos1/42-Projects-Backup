@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 11:07:56 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:08:22 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,24 @@ long	ps_check_first_bigger(long *stacka, long num)
 	return (stacka[0]);
 }
 
-/* Thank you Norminette */
-void	ps_five_helper_3(long *stacka, long *stackb)
+/* This function checks if the original stack a is already sorted */
+int	ps_check_sort(long *stacka)
 {
-	long	num;
-	int		i;
+	int	i;
+	int	sort;
 
-	num = ps_check_first_bigger(stacka, stackb[0]);
 	i = 0;
-	while (stacka[i] != num)
+	sort = 1;
+	while (stacka[i])
+	{
+		if ((stacka[i] > stacka[i + 1]) && stacka[i + 1] != 0)
+			sort = 0;
 		i++;
-	if (i < 2)
-	{
-		while (stacka[0] != num)
-			stacka = ps_ra(stacka);
 	}
+	if (sort == 0)
+		return (0);
 	else
-	{
-		while (stacka[0] != num)
-			stacka = ps_rra(stacka);
-	}
-	ps_pa(stacka, stackb);
+		return (1);
 }
 
 /* This fucntion calculates the appropiate chunk limits*/
@@ -93,7 +90,7 @@ long	*ps_chunk_limits(long *stackcpy, int chunks)
 
 	i = 0;
 	args = ps_check_arg_num(stackcpy);
-	lims = malloc(sizeof(long *) * (chunks - 1));
+		lims = malloc(sizeof(long *) * chunks);
 	if (!lims)
 		return (0);
 	while (ps_check_sort(stackcpy) == 0)

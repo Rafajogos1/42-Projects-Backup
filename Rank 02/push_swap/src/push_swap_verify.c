@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2022/11/15 18:22:16 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:24:58 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ps_check_if_int(char *input)
 	int	i;
 
 	i = 0;
-	if (input[i] == '0')
+	if ((input[i] == '0'))
 		return (1);
 	while (input[i] != '\0')
 	{
