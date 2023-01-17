@@ -6,12 +6,13 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 19:31:13 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:57:13 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* This function puts the previous chunk on top of the stack */
 long	*ps_put_chunk_on_top(long *stacka, long num)
 {
 	int	i;
@@ -39,6 +40,7 @@ long	*ps_put_chunk_on_top(long *stacka, long num)
 	return (stacka);
 }
 
+/* This function returns the chunk back to stacka a*/
 void	ps_return_stack_to_a(long *stacka, long *stackb, long num)
 {
 	int		i;
@@ -60,6 +62,7 @@ void	ps_return_stack_to_a(long *stacka, long *stackb, long num)
 	}
 }
 
+/* This function checks if a number over the limit exists */
 int	ps_check_over_lim(long *stacka, long lim, long lim2)
 {
 	int	i;
@@ -74,6 +77,8 @@ int	ps_check_over_lim(long *stacka, long lim, long lim2)
 	return (0);
 }
 
+/* This function rotates the number to the top of the stack 
+and then passes it to stack b */
 void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 {
 	if (d1 <= d2)
@@ -95,6 +100,7 @@ void	ps_rotate(long *stacka, long *stackb, int d1, int d2)
 	ps_pb(stacka, stackb);
 }
 
+/* This function passes the current chunk to stack b */
 void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2)
 {
 	int	i;

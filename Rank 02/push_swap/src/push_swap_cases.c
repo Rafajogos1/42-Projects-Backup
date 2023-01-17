@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 21:05:34 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:55:08 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ps_hundred(long *stacka, long *stackb, long *stackcpy)
 	free (lims);
 }
 
+/* With up to five hundred numbers */
 void	ps_five_hundred(long *stacka, long *stackb, long *stackcpy)
 {
 	long	*lims;

@@ -6,12 +6,15 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/13 21:10:49 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:00:08 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/* This fucntion is the one that is responsible to
+check how many numbers there are and calls the 
+correct function to sort them */
 void	ps_count(long *stacka, int args, long *stackcpy)
 {
 	long		*stackb;
@@ -30,6 +33,8 @@ void	ps_count(long *stacka, int args, long *stackcpy)
 	free(stackb);
 }
 
+/* push_swap itself. It calls ps_count to count the numbers
+and select the correct sorting algorithm */
 void	push_swap(long *stacka, int ac, long *stackcpy)
 {
 	int		args;
@@ -38,6 +43,9 @@ void	push_swap(long *stacka, int ac, long *stackcpy)
 	ps_count(stacka, args, stackcpy);
 }
 
+/* The main recieves the numbers from the terminal and
+creates stack a with them and a copy to calculate the
+median, and then passes them to push_swap */
 int	main(int argc, char **argv)
 {
 	long	*stacka;
