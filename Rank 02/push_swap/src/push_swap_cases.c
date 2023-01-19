@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:55:08 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:31:00 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ps_hundred(long *stacka, long *stackb, long *stackcpy)
 		ps_chunk_to_b(stacka, stackb, h1, h2);
 		if (h1 == h2)
 		{
-			ps_return_stack_to_a(stacka, stackb, num);
+			ps_return_chunk_to_a(stacka, stackb, num);
 			num = stacka[0];
 			i--;
 		}
@@ -111,7 +111,7 @@ void	ps_five_hundred(long *stacka, long *stackb, long *stackcpy)
 		ps_chunk_to_b(stacka, stackb, h1, h2);
 		if (h1 == h2)
 		{
-			ps_return_stack_to_a(stacka, stackb, num);
+			ps_return_chunk_to_a(stacka, stackb, num);
 			num = stacka[0];
 			i--;
 		}

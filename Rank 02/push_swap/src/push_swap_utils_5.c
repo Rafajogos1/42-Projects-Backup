@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:30:18 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/17 16:57:13 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:41:04 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long	*ps_put_chunk_on_top(long *stacka, long num)
 	{
 		while (stacka[0] != num)
 		{
-			if (inst == 0)
+			if ((inst == 0))
 				stacka = ps_rra(stacka);
 			else
 				stacka = ps_ra(stacka);
@@ -41,15 +41,15 @@ long	*ps_put_chunk_on_top(long *stacka, long num)
 }
 
 /* This function returns the chunk back to stacka a*/
-void	ps_return_stack_to_a(long *stacka, long *stackb, long num)
+void	ps_return_chunk_to_a(long *stacka, long *stackb, long num)
 {
 	int		i;
 
-	i = 0;
 	ps_put_chunk_on_top(stacka, num);
 	while (stackb[0])
 	{
-		while (stackb[i] < stackb[i + 1])
+		i = 0;
+		while (stackb[i] != ps_check_max(stackb))
 			i++;
 		while (stackb[0] != ps_check_max(stackb))
 		{

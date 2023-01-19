@@ -6,7 +6,7 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2022/12/22 18:11:35 by ramartin         ###   ########.fr        #
+#    Updated: 2023/01/19 18:40:18 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS = ./src/push_swap.c \
 		./src/push_swap_utils_2.c \
 		./src/push_swap_utils_3.c \
 		./src/push_swap_utils_4.c \
-		./src/push_swap_utils_5.c
+		./src/push_swap_utils_5.c 
 
 OBJS = $(SRCS:.c=.o)
 
