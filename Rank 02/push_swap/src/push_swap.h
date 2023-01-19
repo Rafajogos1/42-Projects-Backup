@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/19 18:29:29 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:50:42 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	ps_return_chunk_to_a(long *stacka, long *stackb, long num);
 int		ps_check_over_lim(long *stacka, long lim, long lim2);
 void	ps_rotate(long *stacka, long *stackb, int d1, int d2);
 void	ps_chunk_to_b(long *stacka, long *stackb, long h1, long h2);
-int     ps_look_for_number(long *stack, long num);
-void	ps_return_to_a_rotate(long *stacka, long *stackb, int d1, int d2);
 
 /* Verify */
 int		ps_check_if_int(char *input);
