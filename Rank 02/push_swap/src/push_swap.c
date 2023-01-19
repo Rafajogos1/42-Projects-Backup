@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 			write(2, "Error\n", 6);
 			return (0);
 		}
+		free(stacka);
+		free(stackcpy);
 	}
-	free(stacka);
-	free(stackcpy);
 }
