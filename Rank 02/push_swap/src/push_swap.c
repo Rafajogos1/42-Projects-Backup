@@ -59,13 +59,13 @@ int	main(int argc, char **argv)
 			stackcpy = ps_make_stacka(argc, argv);
 			if (ps_check_sort(stacka) == 0)
 				push_swap(stacka, argc, stackcpy);
+			free(stacka);
+			free(stackcpy);
 		}
 		else
 		{
 			write(2, "Error\n", 6);
 			return (0);
 		}
-		free(stacka);
-		free(stackcpy);
 	}
 }
