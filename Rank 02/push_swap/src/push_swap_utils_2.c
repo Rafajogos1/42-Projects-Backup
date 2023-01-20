@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/20 17:25:24 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:32:08 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ when there's 4 or 5 numbers*/
 void	ps_five_helper(long *stacka, long *stackb)
 {
 	int	i;
-	
+
 	i = 0;
 	while (stacka[i] != ps_check_min(stacka))
 		i++;
