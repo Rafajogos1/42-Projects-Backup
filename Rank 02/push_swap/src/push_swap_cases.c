@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/19 18:31:00 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:23:30 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,17 @@ void	ps_five(long *stacka, long *stackb)
 	i = ps_check_arg_num(stacka);
 	while (i > 3)
 	{
-		ps_pb(stacka, stackb);
+		ps_five_helper(stacka, stackb);
 		i--;
 	}
 	ps_three(stacka);
+	if (stackb[1])
+	{
+		if (stackb[0] < stackb[1])
+			stackb = ps_sb(stackb);
+	}
 	while (stackb[0])
-		ps_five_helper(stacka, stackb);
+		ps_pa(stacka, stackb);
 }
 
 /* With up to a hundred numbers */

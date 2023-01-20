@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:21:57 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/19 18:50:42 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:25:34 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int		ps_check_sort(long *stacka);
 long	ps_atoi_helper(long num);
 long	ps_atoi(const char *str);
 void	ps_five_helper(long *stacka, long *stackb);
-long	*ps_five_helper_2(long *stacka);
-void	ps_five_helper_3(long *stacka, long *stackb);
 long	ps_check_max(long *stacka);
 long	ps_check_min(long *stacka);
 long	ps_check_first_bigger(long *stacka, long num);
