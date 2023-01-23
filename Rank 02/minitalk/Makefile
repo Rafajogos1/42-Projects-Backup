@@ -1,4 +1,4 @@
-NAME = minitalk.a
+NAME = minitalk
 LIBFT = ./libft/libft.a
 
 CLIENT = client
@@ -31,7 +31,7 @@ $(CLIENT):	$(OBJS_C)
 
 clean:
 			make clean -C ./libft
-			$(RM) $(OBJS_S) $(OBJS_C)
+			$(RM) $(OBJS_S) $(OBJS_C) $(SERVER) $(CLIENT)
 
 fclean:		clean
 			make fclean -C ./libft

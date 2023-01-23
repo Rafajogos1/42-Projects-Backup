@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 LIBFT = ./libft/libft.a
 
 PS = push_swap
@@ -37,14 +37,11 @@ OBJS = $(SRCS:.c=.o)
 all:		$(NAME) $(PS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			$(AR) $(NAME) $(OBJS)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(PS)
 
 $(LIBFT):
 			make -C ./libft
 			cp ./libft/libft.a $(NAME)
-
-$(PS):		$(OBJS) $(LIBFT)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(PS)
 
 clean:
 			make clean -C ./libft
