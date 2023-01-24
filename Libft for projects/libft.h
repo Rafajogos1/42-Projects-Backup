@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 11:27:56 by ramartin          #+#    #+#             */
-/*   Updated: 2022/11/14 17:08:09 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:40:22 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define BUFFER_SIZE 100
 
 # include <stdlib.h>
 # include <string.h>
@@ -110,5 +112,15 @@ int				printf_udec(unsigned int out);
 int				hexlen(unsigned	int num);
 void			puthex(unsigned int num, const char format);
 int				printf_hex(unsigned int num, const char format);
+
+/** get_next_line **/
+char			*get_line(char *save);
+char			*get_next_line(int fd);
+char			*next_line(char *save);
+char			*read_and_save(int fd, char *save);
+
+char			*gnl_ft_strchr(const char *s, int c);
+char			*gnl_ft_strjoin(char *s1, char *s2);
+size_t			gnl_ft_strlen(const char *s);
 
 #endif
