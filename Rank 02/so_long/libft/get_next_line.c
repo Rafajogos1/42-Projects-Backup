@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 11:05:06 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/24 19:05:49 by rafael           ###   ########.fr       */
+/*   Updated: 2023/01/24 21:57:03 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,7 @@ char	*get_next_line(int fd)
 	save = read_and_save(fd, save);
 	if (!save)
 		return (NULL);
-	out = get_line (save);
+	out = get_line(save);
 	save = next_line(save);
-	free(save);
 	return (out);
 }

@@ -3,13 +3,9 @@
 int	sl_check_map(char *file)
 {
 	int		fd;
-	char	*s;
 
 	fd = open(file, O_RDONLY);
-	s = get_next_line(fd);
-	ft_printf("%s", s);
-	free(s);
-	close (fd);
+	close(fd);
 	return (1);
 }
 
