@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_verify.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
+/*   Updated: 2023/01/26 18:40:40 by ramartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	sl_valid_char(char c)
@@ -31,48 +43,34 @@ int	sl_count_char(char *map)
 		return (1);
 }
 
-int	sl_count_lines(int fd)
+char	*sl_get_map(int fd)
 {
-	int		i;
 	char	*map;
+	char	*buf;
 
-	i = 0;
 	while (fd)
 	{
-		map = get_next_line(fd);
-		if (map == NULL)
+		buf = get_next_line(fd);
+		if (buf != NULL)
+			map = ft_strjoin(map, buf);
+		if (buf == NULL)
 		{
-			free(map);
+			free(buf);
 			break ;
 		}
-		free(map);
-		i++;
+		free(buf);
 	}
-	return (i);
+	return (map);
 }
 
 int	sl_check_map(char *file)
 {
 	int		fd;
-	int		i;
-	int		j;
-	char	*buf;
+	char	*map;
 
 	fd = open(file, O_RDONLY);
-	i = sl_count_lines(fd);
-	fd = open(file, O_RDONLY);
-	j = 0;
-	while (i-- > 0)
-	{
-		buf = get_next_line(fd);
-		map[j] = buf;
-		j++;
-		free(buf);
-	}
-	i = 0;
-	ft_printf("%s", map[0]);
-	if (sl_count_char(map[i]) == 1)
-		ft_printf("A\n");
+	map = sl_get_map(fd);
+	ft_printf("%s\n", map);
 	free(map);
 	close(fd);
 	return (1);

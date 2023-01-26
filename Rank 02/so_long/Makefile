@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
+#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/01/24 21:51:13 by rafael           ###   ########.fr        #
+#    Updated: 2023/01/26 18:34:23 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ clean:
 
 fclean:		clean
 			make fclean -C ./libft
-			$(RM) $(NAME) $(PS)
+			$(RM) $(NAME)
 
-re:			fclean $(NAME) $(PS)
+re:			fclean $(NAME)
 
 .PHONY:		all clean fclean re
