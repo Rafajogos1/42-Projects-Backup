@@ -10,6 +10,7 @@ typedef struct s_game_map
 	int		ccount;
 	int		ecount;
 	int		pcount;
+
 }t_map;
 
 /* so_long */
