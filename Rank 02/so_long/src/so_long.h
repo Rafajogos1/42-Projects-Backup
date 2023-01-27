@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/26 17:30:48 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:15:11 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ typedef struct s_game_map
 void	so_long(char *map);
 
 /* Map verification */
+int		sl_check_around(char *map);
+int		sl_check_rectangle(char *map);
+int		sl_valid_char(char *map);
+int		sl_count_char(char *map);
+char	*sl_get_map(int fd);
 int		sl_check_map(char *file);
 int		sl_extension(char *file);
 

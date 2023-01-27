@@ -6,7 +6,7 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/01/26 18:34:23 by ramartin         ###   ########.fr        #
+#    Updated: 2023/01/27 17:53:14 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ AR = ar -rcs
 RM = /bin/rm -f
 
 SRCS = ./src/so_long.c \
-		./src/so_long_verify.c
+		./src/so_long_verify.c \
+		./src/so_long_verify_2.c
 
 OBJS = $(SRCS:.c=.o)
 

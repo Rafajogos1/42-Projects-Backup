@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
+#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 10:28:36 by ramartin          #+#    #+#              #
-#    Updated: 2023/01/24 18:38:43 by rafael           ###   ########.fr        #
+#    Updated: 2023/01/27 18:24:07 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = ft_atoi.c \
 		  ft_isascii.c \
 		  ft_isdigit.c \
 		  ft_isprint.c \
+		  ft_iswhitespace.c \
 		  ft_itoa.c \
 		  ft_memchr.c \
 		  ft_memcmp.c \

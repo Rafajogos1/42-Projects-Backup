@@ -6,38 +6,51 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/26 18:40:40 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:27:20 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	sl_valid_char(char c)
+int	sl_valid_char(char *map)
 {
-	if ((c == 'C') || (c == 'E') || (c == 'P') \
-	|| (c == '1') || (c == '0') | (c == '\n'))
-		return (1);
-	else
-		return (0);
+	int		i;
+	char	c;
+
+	i = 1;
+	while (map[i])
+	{
+		c = map[i];
+		if (!((c == 'C') || (c == 'E') || (c == 'P') || (c == '1') \
+		|| (c == '0') || (c == '\n') || (c == '\0')))
+			return (0);
+		else
+			i++;
+	}
+	return (1);
 }
 
 int	sl_count_char(char *map)
 {
 	int	i;
+	int	c;
 	int	e;
 	int	p;
 
 	i = 0;
+	c = 0;
+	e = 0;
+	p = 0;
 	while (map[i++])
 	{
-		if (sl_valid_char(map[i]) == 0)
-			return (0);
+		if (map[i] == 'C')
+			c++;
 		if (map[i] == 'E')
 			e++;
 		if (map[i] == 'P')
 			p++;
 	}
-	if ((e > 1) || (p > 1))
+	if ((c == 0) || (e != 1) || (p != 1))
 		return (0);
 	else
 		return (1);
@@ -71,6 +84,15 @@ int	sl_check_map(char *file)
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
 	ft_printf("%s\n", map);
+	if (sl_valid_char(map) == 0)
+		return (0);
+	if (sl_count_char(map) == 0)
+		return (0);
+	if (sl_check_rectangle(map) == 0)
+		return (0);
+	if (sl_check_around(map) == 0)
+		return (0);
+	ft_printf("Yes\n");
 	free(map);
 	close(fd);
 	return (1);
