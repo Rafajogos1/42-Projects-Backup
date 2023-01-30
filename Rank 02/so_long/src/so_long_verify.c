@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/30 18:27:50 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/30 21:54:44 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ char	*sl_get_map(int fd)
 	char	*map;
 	char	*buf;
 
+	map = malloc(sizeof(char *));
 	while (fd)
 	{
 		buf = get_next_line(fd);
 		if (buf != NULL)
-			map = ft_strjoin(map, buf);
-		if (buf == NULL)
+			map = gnl_ft_strjoin(map, buf);
+		else
 		{
 			free(buf);
 			break ;
@@ -90,6 +91,8 @@ int	sl_check_map(char *file)
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
 	ft_printf("%s\n", map);
+	if (map == NULL)
+		return (0);
 	if (sl_valid_char(map) == 0)
 		return (0);
 	if (sl_count_char(map) == 0)
