@@ -6,44 +6,58 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:37 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/27 18:47:02 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:28:02 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	sl_check_around(char *map)
+/* This function checks how many lines the map has */
+int	sl_count_lines(char *map)
 {
 	int	i;
-	int	j;
 	int	lines;
 
 	i = 0;
-	j = 0;
 	lines = 1;
 	while (map[i++])
 		if (map[i] == '\n')
 			lines++;
+	return (lines);
+}
+
+/* This function checks if the walls are only
+composed by the character "1" */
+int	sl_check_around(char *map)
+{
+	int	lines;
+	int	i;
+	int	j;
+
+	lines = sl_count_lines(map);
 	i = 0;
-	ft_printf("%i\n", lines);
+	j = 0;
 	while (map[i++])
 	{
-		ft_printf("line: %i\n", j);
-		if (map[i] == '\n')
+		if (((j == 0) || (j == (lines - 1))) && (map[i] != '\n'))
 		{
-			if ((map[i - 1] != '1') || (map[i + 1] != '1'))
+			if ((map[i] != '1') && ((map[i] != '\0')))
 				return (0);
-			j++;
 		}
-		ft_printf("1\n");
-		if (((j == 0) || (j == (lines - 1))) && (map[i] != '1'))
-			return (0);
-		ft_printf("2\n");
+		else
+		{
+			if ((map[i - 1] == '\n') && (map[i] != '1'))
+				return (0);
+			if ((map[i + 1] == '\n') && (map[i] != '1'))
+				return (0);
+		}
+		if (map[i] == '\n')
+			j++;
 	}
-	ft_printf("%i %i\n", lines);
 	return (1);
 }
 
+/* This function checks if the map is a rectangle */
 int	sl_check_rectangle(char *map)
 {
 	int	i;
@@ -66,5 +80,5 @@ int	sl_check_rectangle(char *map)
 		}
 		j++;
 	}
-	return (1);
+	return (sl_check_around(map));
 }

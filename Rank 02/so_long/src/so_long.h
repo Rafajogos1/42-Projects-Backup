@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/27 18:15:11 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:28:01 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@
 
 typedef struct s_game_map
 {
-	char	**map;
+	char	*map;
 	int		ccount;
-	int		ecount;
-	int		pcount;
-
 }t_map;
 
 /* so_long */

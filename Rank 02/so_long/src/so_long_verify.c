@@ -6,12 +6,14 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/27 18:27:20 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:27:50 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This function checks if the map is only composed
+of the allowed characters */
 int	sl_valid_char(char *map)
 {
 	int		i;
@@ -30,6 +32,8 @@ int	sl_valid_char(char *map)
 	return (1);
 }
 
+/* This function checks if the characters "C" "E" and "P"
+have valid quantities */
 int	sl_count_char(char *map)
 {
 	int	i;
@@ -56,6 +60,7 @@ int	sl_count_char(char *map)
 		return (1);
 }
 
+/* This function gets the map from the file */
 char	*sl_get_map(int fd)
 {
 	char	*map;
@@ -76,6 +81,7 @@ char	*sl_get_map(int fd)
 	return (map);
 }
 
+/* This function checks if the map is according to the rules */
 int	sl_check_map(char *file)
 {
 	int		fd;
@@ -90,14 +96,12 @@ int	sl_check_map(char *file)
 		return (0);
 	if (sl_check_rectangle(map) == 0)
 		return (0);
-	if (sl_check_around(map) == 0)
-		return (0);
-	ft_printf("Yes\n");
 	free(map);
 	close(fd);
 	return (1);
 }
 
+/* This function checks if the file is ".ber" format */
 int	sl_extension(char *file)
 {
 	int		i;

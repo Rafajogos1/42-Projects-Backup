@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/26 17:39:53 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:37:24 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	so_long(char *map)
 	{
 		if (sl_extension(map) == 1)
 		{
-			sl_check_map(map);
+			if (sl_check_map(map) == 1)
+				ft_printf("Yes\n");
+			else
+				ft_printf("Error\nThe recieved map is not valid.\n");
 		}
 		else
 			ft_printf("Error\nFile not in \".ber\" format.\n");
