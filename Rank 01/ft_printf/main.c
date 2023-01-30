@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "./src/ft_printf.h"
 #include <stdio.h>
 
 int	main ()
@@ -210,6 +210,19 @@ int	main ()
 	printf("\033[0;37m");
 	len1 = printf("Test, %i\n", i);
 	len2 = ft_printf("Test, %i\n", i);
+	printf("Printed Characters with printf: %i\n", len1);
+	if (len1 != len2)
+		printf("\033[0;31m");
+	printf("Printed Characters with ft_printf: %i\n", len2);
+	if (len1 != len2)
+		printf("\033[0;37m");
+	printf("\n");
+	/* Text and format (Unsigned Decimal) */
+	printf("\033[1;37m");
+	printf("Text and format (Unsigned Decimal)\n");
+	printf("\033[0;37m");
+	len1 = printf("Test, %u\n", u);
+	len2 = ft_printf("Test, %u\n", u);
 	printf("Printed Characters with printf: %i\n", len1);
 	if (len1 != len2)
 		printf("\033[0;31m");

@@ -5,20 +5,17 @@
 int	main(void)
 {
 	int		fd;
-	int		fd2;
 	int		i;
-	int		j;
+	char	*buf;
 
 	i = 0;
-	j = 1;
 	fd = open("test", O_RDWR);
-	fd2 = open("test", O_RDWR);
 	if (BUFFER_SIZE <= 0)
 	{
-		printf("\033[1;31m");
-		printf("ERROR\n");
+		printf("BUFFER_SIZE was set to 0 or lesser value.\n");
+		printf("\033[1;36m");
+		printf("Check if \"get_next_line\" does not do anything as it should.\n");
 		printf("\033[0;37m");
-		printf("BUFFER_SIZE must be a positive value.\n");
 	}
 	if (fd < 0)
 	{
@@ -29,26 +26,34 @@ int	main(void)
 		printf("\033[0;37m");
 		printf(".\n");
 	}
-	while (get_next_line(fd))
-		i++;
-	if (BUFFER_SIZE > 0 && !(fd < 0))
+
+	if (BUFFER_SIZE > 0)
 	{
 		printf("\033[1;37m");
 		printf("BUFFER_SIZE = %i: \n\n", BUFFER_SIZE);
 	}
-	while (i != 0)
+	while (fd)
 	{
-		printf("\033[1;36m");
-		printf("Line %i: ", j);
-		printf("\033[0;37m");
-		printf("%s", get_next_line(fd2));
-		j++;
-		i--;
+		buf = get_next_line(fd);
+		if (buf == NULL)
+		{
+			free(buf);
+			break ;
+		}
+		else
+		{
+			printf("\033[1;36m");
+			printf("Line %i: ", (i + 1));
+			printf("\033[0;37m");
+			printf("%s", buf);
+		}
+		free(buf);
+		i++;
 	}
-	if (BUFFER_SIZE > 0 && !(fd < 0))
+	if (BUFFER_SIZE > 0)
 	{
 		printf("\033[1;37m");
-		printf("\n\nRead %i lines.\n", (j - 1));
+		printf("\n\nRead %i lines.\n", i);
 	}
 	close(fd);
 }
