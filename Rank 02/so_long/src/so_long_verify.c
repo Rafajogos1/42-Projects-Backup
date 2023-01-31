@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/30 21:54:44 by rafael           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:37:59 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	sl_valid_char(char *map)
 		c = map[i];
 		if (!((c == 'C') || (c == 'E') || (c == 'P') || (c == '1') \
 		|| (c == '0') || (c == '\n') || (c == '\0')))
+		{
+			free(map);
 			return (0);
+		}
 		else
 			i++;
 	}
@@ -55,7 +58,10 @@ int	sl_count_char(char *map)
 			p++;
 	}
 	if ((c == 0) || (e != 1) || (p != 1))
+	{
+		free(map);
 		return (0);
+	}
 	else
 		return (1);
 }
@@ -98,7 +104,10 @@ int	sl_check_map(char *file)
 	if (sl_count_char(map) == 0)
 		return (0);
 	if (sl_check_rectangle(map) == 0)
+	{
+		free(map);
 		return (0);
+	}
 	free(map);
 	close(fd);
 	return (1);

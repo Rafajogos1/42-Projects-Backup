@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:37 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/30 21:52:39 by rafael           ###   ########.fr       */
+/*   Updated: 2023/01/31 18:37:38 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ int	sl_check_rectangle(char *map)
 		if (map[i] == '\n')
 		{
 			if (j != (len - 1))
+			{
+				free(map);
 				return (0);
+			}
 			else
 				j = -1;
 		}
