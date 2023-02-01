@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:37 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/31 18:37:38 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/01 22:14:03 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* This function does a grid version of the map string */
+char	**sl_map_grid(int fd, char *map)
+{
+	int		i;
+	char	*buf;
+	char	**map_grid;
+
+	i = 0;
+	map_grid = malloc(sizeof(char **) * sizeof(map));
+	if (!map_grid)
+		return (NULL);
+	while (fd)
+	{
+		buf = get_next_line(fd);
+		if (buf != NULL)
+		{
+			map_grid[i] = gnl_ft_strjoin(map_grid[i], buf);
+			i++;
+		}
+		else
+		{
+			free(buf);
+			break ;
+		}
+		free(buf);
+	}
+	return (map_grid);
+}
 
 /* This function checks how many lines the map has */
 int	sl_count_lines(char *map)

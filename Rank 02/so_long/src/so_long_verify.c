@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/31 18:37:59 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/01 21:56:20 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	sl_check_map(char *file)
 
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
-	ft_printf("%s\n", map);
 	if (map == NULL)
 		return (0);
 	if (sl_valid_char(map) == 0)
@@ -108,6 +107,8 @@ int	sl_check_map(char *file)
 		free(map);
 		return (0);
 	}
+	if (sl_pathfinding(open(file, O_RDONLY), map) == 0)
+		return (0);
 	free(map);
 	close(fd);
 	return (1);

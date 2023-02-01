@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/01/30 21:52:49 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/01 22:18:25 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_game_map
 void	so_long(char *map);
 
 /* Map verification */
+int		sl_count_collectibles(char *map);
+void	sl_free_grid(char **map_grid);
+int		sl_pathfinding(int fd, char *map);
+char	**sl_map_grid(int fd, char *map);
 int		sl_check_around(char *map);
 int		sl_check_rectangle(char *map);
 int		sl_valid_char(char *map);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
+#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/01/27 17:53:14 by ramartin         ###   ########.fr        #
+#    Updated: 2023/02/01 21:58:05 by rafael           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RM = /bin/rm -f
 
 SRCS = ./src/so_long.c \
 		./src/so_long_verify.c \
-		./src/so_long_verify_2.c
+		./src/so_long_verify_2.c \
+		./src/so_long_pathfinding.c
 
 OBJS = $(SRCS:.c=.o)
 
