@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:52:41 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/02 18:38:23 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/02 22:49:56 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	sl_count_zeros(char **map_grid)
 
 	i = 0;
 	j = 0;
-	count = 0;
+	count = 1;
 	while (map_grid[i][j])
 	{
-		if (map_grid[i][j] == '0')
+		if ((map_grid[i][j] == '0') || (map_grid[i][j] == 'C'))
 			count++;
 		if ((map_grid[i][j] == '\0') || (map_grid[i][j] == '\n'))
 		{
