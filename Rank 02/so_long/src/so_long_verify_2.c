@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:37 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/01 22:14:03 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/02 16:53:45 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ int	sl_check_rectangle(char *map)
 		if (map[i] == '\n')
 		{
 			if (j != (len - 1))
-			{
-				free(map);
 				return (0);
-			}
 			else
 				j = -1;
 		}

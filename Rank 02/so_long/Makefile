@@ -6,7 +6,7 @@
 #    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/02/01 21:58:05 by rafael           ###   ########.fr        #
+#    Updated: 2023/02/02 18:00:40 by rafael           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ RM = /bin/rm -f
 SRCS = ./src/so_long.c \
 		./src/so_long_verify.c \
 		./src/so_long_verify_2.c \
-		./src/so_long_pathfinding.c
+		./src/so_long_pathfinding.c \
+		./src/so_long_pathfinding_2.c
 
 OBJS = $(SRCS:.c=.o)
 
