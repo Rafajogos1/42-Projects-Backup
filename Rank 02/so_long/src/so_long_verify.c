@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/02 17:22:18 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/03 17:34:33 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,23 +118,10 @@ int	sl_check_map(char *file)
 int	sl_extension(char *file)
 {
 	int		i;
-	int		j;
-	char	*end;
 
-	end = malloc(sizeof(char *) * 5);
-	if (!end)
-		return (0);
 	i = (ft_strlen(file) - 4);
-	while (file[i])
-		end[j++] = file[i++];
-	if (ft_strncmp(".ber", end, 5) == 0)
-	{
-		free(end);
+	if (ft_strncmp(".ber", file + i, 5) == 0)
 		return (1);
-	}
 	else
-	{
-		free(end);
 		return (0);
-	}
 }
