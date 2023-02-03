@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
+#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/02/03 17:30:57 by rafael           ###   ########.fr        #
+#    Updated: 2023/02/03 19:04:34 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 LIBFT = ./libft/libft.a
+MLX = ./mlx_linux/libmlx.a
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 RM = /bin/rm -f
 
@@ -28,15 +29,20 @@ OBJS = $(SRCS:.c=.o)
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME):	$(OBJS) $(LIBFT) $(MLX)
+			$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) $(MLX) -o $(NAME)
 
 $(LIBFT):
 			make -C ./libft
 			cp ./libft/libft.a $(NAME)
 
+$(MLX):
+			make -C ./mlx_linux
+			cp ./mlx_linux/libmlx.a $(NAME)
+
 clean:
 			make clean -C ./libft
+			make clean -C ./mlx_linux
 			$(RM) $(OBJS)
 
 fclean:		clean

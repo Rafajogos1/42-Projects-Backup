@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_pathfinding_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:52:41 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/02 22:49:56 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:15:40 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,33 @@ void	sl_check_next_to(char **map_grid, int *i, int *j)
 	if ((map_grid[*i][*j - 1] == '0') || (map_grid[*i][*j - 1] == 'E') \
 	|| (map_grid[*i][*j - 1] == 'C'))
 		map_grid[*i][*j - 1] = '-';
+}
+
+/* This function does a grid version of the map string */
+char	**sl_map_grid(int fd, char *map)
+{
+	int		i;
+	char	*buf;
+	char	**map_grid;
+
+	i = 0;
+	map_grid = malloc(sizeof(char **) * ft_strlen(map));
+	if (!map_grid)
+		return (NULL);
+	while (fd)
+	{
+		buf = get_next_line(fd);
+		if (buf != NULL)
+		{
+			map_grid[i] = gnl_ft_strjoin(map_grid[i], buf);
+			i++;
+		}
+		else
+		{
+			free(buf);
+			break ;
+		}
+		free(buf);
+	}
+	return (map_grid);
 }

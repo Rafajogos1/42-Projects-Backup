@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 17:30:30 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:39:09 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	so_long(char *map)
+void	so_long(char *map)
 {
-	
-} */
+	void	*mlx;
+	void	*mlx_win;
+
+	ft_printf("%s\n", map);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
+	free(mlx_win);
+}
 
 int	main(int ac, char **av)
 {
@@ -26,7 +33,7 @@ int	main(int ac, char **av)
 			if (sl_extension(av[1]) == 1)
 			{
 				if (sl_check_map(av[1]) == 1)
-					ft_printf("Yes\n");
+					so_long(av[1]);
 				else
 					ft_printf("Error\nThe recieved map is not valid.\n");
 			}
