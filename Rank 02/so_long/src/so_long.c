@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 22:08:54 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:39:50 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	so_long(char *map)
+void	so_long(char *file)
 {
-	void	*game;
-	void	*game_win;
+	int		fd;
+	char	*map;
+	char	**game_map;
 
-	ft_printf("%s\n", map);
-	game = mlx_init();
-	game_win = mlx_new_window(game, 1920, 1080, "so_long");
-	mlx_loop(game);
-	free(game_win);
+	fd = open(file, O_RDONLY);
+	map = sl_get_map(fd);
+	game_map = sl_map_grid(open(file, O_RDONLY), map);
+	ft_printf("%s\n", game_map[0]);
+	close(fd);
 }
 
 int	main(int ac, char **av)

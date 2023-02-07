@@ -6,13 +6,13 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 17:54:56 by ramartin          #+#    #+#              #
-#    Updated: 2023/02/03 19:04:34 by ramartin         ###   ########.fr        #
+#    Updated: 2023/02/07 18:30:38 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 LIBFT = ./libft/libft.a
-MLX = ./mlx_linux/libmlx.a
+MLX = ./mlx/libmlx.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -30,19 +30,19 @@ OBJS = $(SRCS:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT) $(MLX)
-			$(CC) $(CFLAGS) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz $(LIBFT) $(MLX) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz $(LIBFT) $(MLX) -o $(NAME)
 
 $(LIBFT):
 			make -C ./libft
 			cp ./libft/libft.a $(NAME)
 
 $(MLX):
-			make -C ./mlx_linux
-			cp ./mlx_linux/libmlx.a $(NAME)
+			make -C ./mlx
+			cp ./mlx/libmlx.a $(NAME)
 
 clean:
 			make clean -C ./libft
-			make clean -C ./mlx_linux
+			make clean -C ./mlx
 			$(RM) $(OBJS)
 
 fclean:		clean

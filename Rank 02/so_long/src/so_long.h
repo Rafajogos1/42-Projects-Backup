@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 19:04:53 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:30:41 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define SO_LONG_H
 
 # include "../libft/libft.h"
-# include "../mlx_linux/mlx.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 
 typedef struct s_game_map
 {
 	char	**map;
-	int		ccount;
+	char	*c_path;
+	char	*e_path;
+	char	*p_path;
 }t_map;
 
 /* so_long */

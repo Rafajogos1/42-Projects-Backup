@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 18:19:21 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/07 18:13:21 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*sl_get_map(int fd)
 	char	*map;
 	char	*buf;
 
-	map = malloc(sizeof(char *));
+	map = NULL;
 	while (fd)
 	{
 		buf = get_next_line(fd);
