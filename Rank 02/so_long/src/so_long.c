@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 18:39:09 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/03 22:08:54 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	so_long(char *map)
 {
-	void	*mlx;
-	void	*mlx_win;
+	void	*game;
+	void	*game_win;
 
 	ft_printf("%s\n", map);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
-	free(mlx_win);
+	game = mlx_init();
+	game_win = mlx_new_window(game, 1920, 1080, "so_long");
+	mlx_loop(game);
+	free(game_win);
 }
 
 int	main(int ac, char **av)
