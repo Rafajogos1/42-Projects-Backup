@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_pathfinding_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:52:41 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/07 18:18:24 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:40:47 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	**sl_map_grid(int fd, char *map)
 	char	**map_grid;
 
 	i = 0;
-	map_grid = malloc(sizeof(char **) * ft_strlen(map));
+	map_grid = malloc(sizeof(char **) * (sl_count_lines(map) + 1));
 	if (!map_grid)
 		return (NULL);
 	while (fd)
@@ -93,7 +93,8 @@ char	**sl_map_grid(int fd, char *map)
 		buf = get_next_line(fd);
 		if (buf != NULL)
 		{
-			map_grid[i] = gnl_ft_strjoin(map_grid[i], buf);
+			map_grid[i] = malloc(ft_strlen(buf) + 1);
+			map_grid[i] = ft_strncpy(map_grid[i], buf, ft_strlen(buf));
 			i++;
 		}
 		else

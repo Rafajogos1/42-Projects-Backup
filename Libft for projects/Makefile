@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
+#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 10:28:36 by ramartin          #+#    #+#              #
-#    Updated: 2023/01/27 18:24:07 by ramartin         ###   ########.fr        #
+#    Updated: 2023/02/08 21:55:27 by rafael           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS = ft_atoi.c \
 		  ft_strlen.c \
 		  ft_strmapi.c \
 		  ft_strncmp.c \
+		  ft_strncpy.c \
 		  ft_strnstr.c \
 		  ft_strrchr.c \
 		  ft_strtrim.c \

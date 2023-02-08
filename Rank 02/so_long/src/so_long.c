@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/07 18:39:50 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:41:31 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@ void	so_long(char *file)
 {
 	int		fd;
 	char	*map;
-	char	**game_map;
+	char	**map_grid;
+	int		i;
 
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
-	game_map = sl_map_grid(open(file, O_RDONLY), map);
-	ft_printf("%s\n", game_map[0]);
+	map_grid = sl_map_grid(open(file, O_RDONLY), map);
+	i = 0;
+	while (map_grid[i])
+	{
+		ft_printf("%s", map_grid[i]);
+		i++;
+	}
+	ft_printf("\n");
+	sl_free_grid(map_grid);
+	free(map);
 	close(fd);
 }
 

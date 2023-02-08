@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/07 18:30:41 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/08 22:41:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 
-typedef struct s_game_map
+typedef struct s_gmap
 {
 	char	**map;
 	char	*c_path;
@@ -27,6 +27,8 @@ typedef struct s_game_map
 
 /* so_long */
 void	so_long(char *map);
+
+/* Utillities */
 
 /* Map verification */
 int		sl_count_char_2(char **map_grid);
@@ -38,6 +40,7 @@ void	sl_check_path(char **map_grid);
 void	sl_free_grid(char **map_grid);
 int		sl_pathfinding(int fd, char *map);
 char	**sl_map_grid(int fd, char *map);
+int		sl_count_lines(char *map);
 int		sl_check_around(char *map);
 int		sl_check_rectangle(char *map);
 int		sl_valid_char(char *map);
