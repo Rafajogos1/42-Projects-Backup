@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/09 00:05:42 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 19:31:46 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,27 @@ typedef struct s_map
 	char	*es_path;
 	char	*p_path;
 	char	*w_path;
+	int		win_w;
+	int		win_h;
+	int		w;
+	int		h;
 }t_map;
+
+typedef struct s_spr
+{
+	void	*c;
+	void	*e;
+	void	*es;
+	void	*p;
+	void	*w;
+}t_spr;
+
 
 /* so_long */
 void	so_long(char *map);
 
 /* Utillities */
+t_spr	*sl_start_sprites(t_map *map, void *game);
 void	sl_free_map(t_map *map);
 t_map	*sl_start_map(char *file);
 

@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:52:41 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/08 22:40:47 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 19:55:28 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,12 @@ char	**sl_map_grid(int fd, char *map)
 		{
 			map_grid[i] = malloc(ft_strlen(buf) + 1);
 			map_grid[i] = ft_strncpy(map_grid[i], buf, ft_strlen(buf));
+			free(buf);
 			i++;
 		}
 		else
-		{
-			free(buf);
 			break ;
-		}
-		free(buf);
 	}
+	map_grid[i] = NULL;
 	return (map_grid);
 }
