@@ -6,17 +6,18 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:39:55 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/09 19:40:11 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 20:54:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This functionc creates the sprites using the images in "./textures" */
 t_spr	*sl_start_sprites(t_map *map, void *game)
 {
 	t_spr	*sprites;
 
-	sprites = malloc(sizeof(void *) * 5);
+	sprites = malloc(sizeof(t_spr));
 	if (!sprites)
 		return (NULL);
 	sprites->c = mlx_xpm_file_to_image(game, map->c_path, &map->w, &map->w);
@@ -38,14 +39,12 @@ void	sl_free_map(t_map *map)
 t_map	*sl_start_map(char *file)
 {	
 	int		fd;
-	int		n;
 	char	*map;
 	t_map	*game_map;
 
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
-	n = (104 + sl_count_lines(map));
-	game_map = malloc(sizeof(t_map *) * n);
+	game_map = malloc(sizeof(t_map));
 	if (!game_map)
 		return (NULL);
 	game_map->c_path = "./textures/C.xpm";

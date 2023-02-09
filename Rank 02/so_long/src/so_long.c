@@ -6,12 +6,14 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/09 20:26:09 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 22:15:47 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This function exists due to Norminette's line limit to
+reduce "sl_print_map"'s line number */
 void	sl_print_map_helper(t_map *map, int *i, int *j)
 {
 	int	temp;
@@ -25,6 +27,8 @@ void	sl_print_map_helper(t_map *map, int *i, int *j)
 	}
 }
 
+/* This function goes throught the grid of the ma and draws
+the sprites on their correct spots */
 void	sl_print_map(void *game, void *game_win, t_map *map, t_spr *sprites)
 {
 	int	i;
@@ -58,16 +62,16 @@ void	so_long(char *file)
 {
 	t_map	*map;
 	t_spr	*sprites;
-	void	*game;
-	void	*game_win;
+	t_game	game;
 
 	map = sl_start_map(file);
-	game = mlx_init();
-	sprites = sl_start_sprites(map, game);
-	game_win = mlx_new_window(game, (map->win_w * 64), \
+	game.game = mlx_init();
+	sprites = sl_start_sprites(map, game.game);
+	game.win = mlx_new_window(game.game, (map->win_w * 64), \
 	(map->win_h * 64), "so_long");
-	sl_print_map(game, game_win, map, sprites);
-	mlx_loop(game);
+	sl_print_map(game.game, game.win, map, sprites);
+	mlx_key_hook(game.win, key_hook, &game);
+	mlx_loop(game.game);
 	sl_free_map(map);
 }
 

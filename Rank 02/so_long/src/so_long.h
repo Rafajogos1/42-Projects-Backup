@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/09 19:31:46 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 21:46:43 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,19 @@ typedef struct s_spr
 	void	*w;
 }t_spr;
 
+typedef struct s_game{
+	void	*game;
+	void	*win;
+}t_game;
+
 
 /* so_long */
+void	sl_print_map_helper(t_map *map, int *i, int *j);
+void	sl_print_map(void *game, void *game_win, t_map *map, t_spr *sprites);
 void	so_long(char *map);
+
+/* Hooks */
+int		key_hook(int keycode, t_game *game);
 
 /* Utillities */
 t_spr	*sl_start_sprites(t_map *map, void *game);
