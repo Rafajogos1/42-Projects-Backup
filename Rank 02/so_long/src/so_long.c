@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/08 22:41:31 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 00:07:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 void	so_long(char *file)
 {
-	int		fd;
-	char	*map;
-	char	**map_grid;
-	int		i;
+	t_map	*map;
 
-	fd = open(file, O_RDONLY);
-	map = sl_get_map(fd);
-	map_grid = sl_map_grid(open(file, O_RDONLY), map);
-	i = 0;
-	while (map_grid[i])
-	{
-		ft_printf("%s", map_grid[i]);
-		i++;
-	}
-	ft_printf("\n");
-	sl_free_grid(map_grid);
-	free(map);
-	close(fd);
+	map = sl_start_map(file);
+	ft_printf("%s", map->map[0]);
+	ft_printf("%s", map->map[1]);
+	ft_printf("%s", map->map[2]);
+	ft_printf("%s", map->map[3]);
+	ft_printf("%s", map->map[4]);
+	ft_printf("%s\n", map->map[5]);
+	ft_printf("%s\n", map->c_path);
+	ft_printf("%s\n", map->e_path);
+	ft_printf("%s\n", map->es_path);
+	ft_printf("%s\n", map->p_path);
+	ft_printf("%s\n", map->w_path);
+	sl_free_map(map);
 }
 
 int	main(int ac, char **av)

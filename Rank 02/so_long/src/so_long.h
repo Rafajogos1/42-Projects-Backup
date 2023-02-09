@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/08 22:41:49 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/09 00:05:42 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 
-typedef struct s_gmap
+typedef struct s_map
 {
 	char	**map;
 	char	*c_path;
 	char	*e_path;
+	char	*es_path;
 	char	*p_path;
+	char	*w_path;
 }t_map;
 
 /* so_long */
 void	so_long(char *map);
 
 /* Utillities */
+void	sl_free_map(t_map *map);
+t_map	*sl_start_map(char *file);
 
 /* Map verification */
 int		sl_count_char_2(char **map_grid);
