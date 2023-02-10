@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/10 02:07:08 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:50:21 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	sl_print_map(t_game *game);
 void	so_long(char *map);
 
 /* Hooks */
+void	sl_find_p(t_map *map, int *x, int *y);
+int		sl_check_collision(t_map *map, int keycode);
+void	sl_move_horizontal(t_game *game, int keycode, int *x, int *y);
+void	sl_move_vertical(t_game *game, int keycode, int *x, int *y);
+void	sl_move(t_game *game, int keycode);
 int		key_hook(int keycode, t_game *game);
 
 /* Utillities */

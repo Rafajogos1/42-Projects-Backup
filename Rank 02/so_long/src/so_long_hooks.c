@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_hooks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:04:07 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/10 02:16:15 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/10 18:08:27 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*void	sl_find_p(t_map *map, int *x, int *y)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map->map[i][j])
-	{
-		if ((map->map[i][j] == '\0') || (map->map[i][j] == '\n'))
-		{
-			i++;
-			j = 0;
-		}
-		if (map->map[i][j] == 'P')
-		{
-			*x = j;
-			*y = i;
-			break ;
-		}
-		j++;
-	}
-}
 
 int	sl_check_collision(t_map *map, int keycode)
 {
@@ -55,6 +31,58 @@ int	sl_check_collision(t_map *map, int keycode)
 	return (0);
 }
 
+void	sl_move_horizontal(t_game *game, int keycode, int *x, int *y)
+{
+	if ((keycode == 97) && (sl_check_collision(game->map, keycode) == 0))
+	{
+		game->map->map[*y][*x - 1] = 'P';
+		ft_printf("1\n");
+		game->map->map[*y][*x] = '0';
+		ft_printf("2\n");
+		sl_start_sprites(game->map, game->game);
+		ft_printf("3\n");
+		sl_print_map(game);
+		ft_printf("4\n");
+	}
+	if ((keycode == 100) && (sl_check_collision(game->map, keycode) == 0))
+	{
+		game->map->map[*y][*x + 1] = 'P';
+		ft_printf("1\n");
+		game->map->map[*y][*x] = '0';
+		ft_printf("2\n");
+		sl_start_sprites(game->map, game->game);
+		ft_printf("3\n");
+		sl_print_map(game);
+		ft_printf("4\n");
+	}
+}
+
+void	sl_move_vertical(t_game *game, int keycode, int *x, int *y)
+{
+	if ((keycode == 115) && (sl_check_collision(game->map, keycode) == 0))
+	{
+		game->map->map[*y + 1][*x] = 'P';
+		ft_printf("1\n");
+		game->map->map[*y][*x] = '0';
+		ft_printf("2\n");
+		sl_start_sprites(game->map, game->game);
+		ft_printf("3\n");
+		sl_print_map(game);
+		ft_printf("4\n");
+	}
+	if ((keycode == 119) && (sl_check_collision(game->map, keycode) == 0))
+	{
+		game->map->map[*y - 1][*x] = 'P';
+		ft_printf("1\n");
+		game->map->map[*y][*x] = '0';
+		ft_printf("2\n");
+		sl_start_sprites(game->map, game->game);
+		ft_printf("3\n");
+		sl_print_map(game);
+		ft_printf("4\n");
+	}
+}
+
 void	sl_move(t_game *game, int keycode)
 {
 	int		x;
@@ -63,21 +91,18 @@ void	sl_move(t_game *game, int keycode)
 	x = 0;
 	y = 0;
 	sl_find_p(game->map, &x, &y);
-	if ((keycode == 119) && (sl_check_collision(game->map, keycode) == 0))
-	{
-		game->map->map[y - 1][x] = 'P';
-		game->map->map[y][x] = '0';
-		sl_start_sprites(game->map, game->game);
-		sl_print_map(game);
-	}
-}*/
+	if ((keycode == 119) || (keycode == 115))
+		sl_move_vertical(game, keycode, &x, &y);
+	if ((keycode == 97) || (keycode == 100))
+		sl_move_horizontal(game, keycode, &x, &y);
+}
 
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 		sl_end_game(game);
-	/*else
-		sl_move(game, keycode);*/
+	else
+		sl_move(game, keycode);
 	ft_printf("%i\n", keycode);
 	return (0);
 }

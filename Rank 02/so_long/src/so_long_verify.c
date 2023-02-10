@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:35 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/07 18:13:21 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:43:17 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int	sl_check_map(char *file)
 	fd = open(file, O_RDONLY);
 	map = sl_get_map(fd);
 	if (map == NULL)
+		return (0);
+	if (map[ft_strlen(map) - 1] == '\n')
 		return (0);
 	if (sl_valid_char(map) == 0)
 		return (0);

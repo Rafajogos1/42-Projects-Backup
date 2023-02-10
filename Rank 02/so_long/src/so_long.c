@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/10 02:21:31 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/10 17:35:09 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	sl_end_game(t_game *game)
 	mlx_destroy_window(game->game, game->win);
 	mlx_destroy_display(game->game);
 	sl_free_map(game->map);
-	sl_free_sprites(game);
-	return (0);
+	free(game->game);
+	exit(0);
 }
 
 /* This function exists due to Norminette's line limit to
