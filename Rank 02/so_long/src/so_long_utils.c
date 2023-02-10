@@ -6,11 +6,21 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:39:55 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/09 20:54:49 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/10 02:11:45 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	sl_free_sprites(t_game *game)
+{
+	mlx_destroy_image(game->game, game->sprites->c);
+	mlx_destroy_image(game->game, game->sprites->e);
+	mlx_destroy_image(game->game, game->sprites->es);
+	mlx_destroy_image(game->game, game->sprites->p);
+	mlx_destroy_image(game->game, game->sprites->w);
+	free(game->sprites);
+}
 
 /* This functionc creates the sprites using the images in "./textures" */
 t_spr	*sl_start_sprites(t_map *map, void *game)
@@ -25,6 +35,9 @@ t_spr	*sl_start_sprites(t_map *map, void *game)
 	sprites->es = mlx_xpm_file_to_image(game, map->es_path, &map->w, &map->w);
 	sprites->p = mlx_xpm_file_to_image(game, map->p_path, &map->w, &map->w);
 	sprites->w = mlx_xpm_file_to_image(game, map->w_path, &map->w, &map->w);
+	if ((!sprites->c) || (!sprites->e) || (!sprites->es) || (!sprites->p) \
+	|| (!sprites->w))
+		return (NULL);
 	return (sprites);
 }
 

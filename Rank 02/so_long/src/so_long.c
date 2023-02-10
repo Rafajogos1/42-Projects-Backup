@@ -6,56 +6,64 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/09 22:15:47 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/10 02:21:31 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* This function exists due to Norminette's line limit to
-reduce "sl_print_map"'s line number */
-void	sl_print_map_helper(t_map *map, int *i, int *j)
+/* This function is responsible for closing the game */
+int	sl_end_game(t_game *game)
 {
-	int	temp;
-
-	if (map->map[*i][*j] == '\n')
-	{
-		*j = 0;
-		temp = *i;
-		temp++;
-		*i = temp;
-	}
+	mlx_clear_window(game->game, game->win);
+	mlx_destroy_window(game->game, game->win);
+	mlx_destroy_display(game->game);
+	sl_free_map(game->map);
+	sl_free_sprites(game);
+	return (0);
 }
 
-/* This function goes throught the grid of the ma and draws
+/* This function exists due to Norminette's line limit to
+reduce "sl_print_map"'s line number */
+void	sl_print_map_helper(t_game *game, int *i, int *j)
+{
+	if (game->map->map[*i][*j] == 'C')
+		mlx_put_image_to_window(game->game, game->win, game->sprites->c, \
+		(*j * 64), (*i * 64));
+	if (game->map->map[*i][*j] == 'E')
+		mlx_put_image_to_window(game->game, game->win, game->sprites->e, \
+		(*j * 64), (*i * 64));
+	if (game->map->map[*i][*j] == '0')
+		mlx_put_image_to_window(game->game, game->win, game->sprites->es, \
+		(*j * 64), (*i * 64));
+	if (game->map->map[*i][*j] == 'P')
+		mlx_put_image_to_window(game->game, game->win, game->sprites->p, \
+		(*j * 64), (*i * 64));
+	if (game->map->map[*i][*j] == '1')
+		mlx_put_image_to_window(game->game, game->win, game->sprites->w, \
+		(*j * 64), (*i * 64));
+}
+
+/* This function goes throught the grid of the map and draws
 the sprites on their correct spots */
-void	sl_print_map(void *game, void *game_win, t_map *map, t_spr *sprites)
+void	sl_print_map(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (map->map[i][j])
+	while (game->map->map[i][j])
 	{
-		sl_print_map_helper(map, &i, &j);
-		if (map->map[i][j] == 'C')
-			mlx_put_image_to_window(game, game_win, sprites->c, \
-			(j * 64), (i * 64));
-		if (map->map[i][j] == 'E')
-			mlx_put_image_to_window(game, game_win, sprites->e, \
-			(j * 64), (i * 64));
-		if (map->map[i][j] == '0')
-			mlx_put_image_to_window(game, game_win, sprites->es, \
-			(j * 64), (i * 64));
-		if (map->map[i][j] == 'P')
-			mlx_put_image_to_window(game, game_win, sprites->p, \
-			(j * 64), (i * 64));
-		if (map->map[i][j] == '1')
-			mlx_put_image_to_window(game, game_win, sprites->w, \
-			(j * 64), (i * 64));
+		if (game->map->map[i][j] == '\n')
+		{
+			j = 0;
+			i++;
+		}
+		sl_print_map_helper(game, &i, &j);
 		j++;
 	}
+	sl_free_sprites(game);
 }
 
 void	so_long(char *file)
@@ -69,10 +77,12 @@ void	so_long(char *file)
 	sprites = sl_start_sprites(map, game.game);
 	game.win = mlx_new_window(game.game, (map->win_w * 64), \
 	(map->win_h * 64), "so_long");
-	sl_print_map(game.game, game.win, map, sprites);
+	game.map = map;
+	game.sprites = sprites;
+	sl_print_map(&game);
 	mlx_key_hook(game.win, key_hook, &game);
+	mlx_hook(game.win, 17, 0, &sl_end_game, &game);
 	mlx_loop(game.game);
-	sl_free_map(map);
 }
 
 int	main(int ac, char **av)
