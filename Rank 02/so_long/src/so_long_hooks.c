@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:04:07 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/10 18:08:27 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:14:11 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,14 @@ void	sl_move_horizontal(t_game *game, int keycode, int *x, int *y)
 	if ((keycode == 97) && (sl_check_collision(game->map, keycode) == 0))
 	{
 		game->map->map[*y][*x - 1] = 'P';
-		ft_printf("1\n");
 		game->map->map[*y][*x] = '0';
-		ft_printf("2\n");
-		sl_start_sprites(game->map, game->game);
-		ft_printf("3\n");
 		sl_print_map(game);
-		ft_printf("4\n");
 	}
 	if ((keycode == 100) && (sl_check_collision(game->map, keycode) == 0))
 	{
 		game->map->map[*y][*x + 1] = 'P';
-		ft_printf("1\n");
 		game->map->map[*y][*x] = '0';
-		ft_printf("2\n");
-		sl_start_sprites(game->map, game->game);
-		ft_printf("3\n");
 		sl_print_map(game);
-		ft_printf("4\n");
 	}
 }
 
@@ -62,24 +52,14 @@ void	sl_move_vertical(t_game *game, int keycode, int *x, int *y)
 	if ((keycode == 115) && (sl_check_collision(game->map, keycode) == 0))
 	{
 		game->map->map[*y + 1][*x] = 'P';
-		ft_printf("1\n");
 		game->map->map[*y][*x] = '0';
-		ft_printf("2\n");
-		sl_start_sprites(game->map, game->game);
-		ft_printf("3\n");
 		sl_print_map(game);
-		ft_printf("4\n");
 	}
 	if ((keycode == 119) && (sl_check_collision(game->map, keycode) == 0))
 	{
 		game->map->map[*y - 1][*x] = 'P';
-		ft_printf("1\n");
 		game->map->map[*y][*x] = '0';
-		ft_printf("2\n");
-		sl_start_sprites(game->map, game->game);
-		ft_printf("3\n");
 		sl_print_map(game);
-		ft_printf("4\n");
 	}
 }
 
@@ -99,10 +79,13 @@ void	sl_move(t_game *game, int keycode)
 
 int	key_hook(int keycode, t_game *game)
 {
+	ft_printf("%i\n", keycode);
 	if (keycode == 65307)
+	{
+		sl_free_sprites(game);
 		sl_end_game(game);
+	}
 	else
 		sl_move(game, keycode);
-	ft_printf("%i\n", keycode);
 	return (0);
 }

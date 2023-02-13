@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:39:55 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/10 17:33:21 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:43:54 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sl_free_sprites(t_game *game)
 	free(game->sprites);
 }
 
-/* This functionc creates the sprites using the images in "./textures" */
+/* This function creates the sprites using the images in "./textures" */
 t_spr	*sl_start_sprites(t_map *map, void *game)
 {
 	t_spr	*sprites;

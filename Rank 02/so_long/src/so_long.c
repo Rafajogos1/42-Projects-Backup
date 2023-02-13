@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/10 17:35:09 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:16:50 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	sl_print_map(t_game *game)
 		sl_print_map_helper(game, &i, &j);
 		j++;
 	}
-	sl_free_sprites(game);
 }
 
 void	so_long(char *file)
@@ -81,7 +80,7 @@ void	so_long(char *file)
 	game.sprites = sprites;
 	sl_print_map(&game);
 	mlx_key_hook(game.win, key_hook, &game);
-	mlx_hook(game.win, 17, 0, &sl_end_game, &game);
+	mlx_hook(game.win, 17, 0, &sl_close_x, &game);
 	mlx_loop(game.game);
 }
 
