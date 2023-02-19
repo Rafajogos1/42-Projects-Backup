@@ -6,12 +6,15 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 22:23:09 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/09 19:49:37 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/19 23:10:07 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This funciton turns all walkable characters adjacent to every "-" present.
+The check is repeated for the number of walkable chracters to ensure that a 
+verification is done for every character.*/
 void	sl_turn_to_minus(char **map_grid)
 {
 	int	i;
@@ -20,7 +23,7 @@ void	sl_turn_to_minus(char **map_grid)
 
 	i = 0;
 	j = 0;
-	count = sl_count_zeros(map_grid);
+	count = sl_count_walkable(map_grid);
 	while (count != 0)
 	{
 		i = 0;
@@ -40,6 +43,7 @@ void	sl_turn_to_minus(char **map_grid)
 	}
 }
 
+/* This function checks for "P" and turns it into a "-". */
 void	sl_start_coordinates(char **map_grid, int *x, int *y)
 {
 	int	i;
@@ -65,6 +69,7 @@ void	sl_start_coordinates(char **map_grid, int *x, int *y)
 	map_grid[*y][*x] = '-';
 }
 
+/* This function turns every walkable character adjacent to a "-". */
 void	sl_check_path(char **map_grid)
 {
 	int	x;
@@ -74,6 +79,7 @@ void	sl_check_path(char **map_grid)
 	sl_turn_to_minus(map_grid);
 }
 
+/* This function frees the grid. */
 void	sl_free_grid(char **map_grid)
 {
 	int	i;
@@ -84,6 +90,8 @@ void	sl_free_grid(char **map_grid)
 	free(map_grid);
 }
 
+/* This function is responsible for checking if the map has
+a valid path. */
 int	sl_pathfinding(int fd, char *map)
 {
 	char	**map_grid;

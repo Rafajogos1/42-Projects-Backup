@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:42 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:13 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:04:19 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_map
 	char	*e_path;
 	char	*es_path;
 	char	*p_path;
+	char	*p2_path;
 	char	*w_path;
 	int		win_w;
 	int		win_h;
@@ -54,13 +55,16 @@ void	sl_print_map(t_game *game);
 void	so_long(char *map);
 
 /* Hooks */
+void	sl_change_p(t_game *game);
 int		sl_close_x(t_game *game);
+int		sl_find_c(t_map *map);
+int		sl_find_e(t_map *map);
 void	sl_find_p(t_map *map, int *x, int *y);
 int		sl_check_collision(t_map *map, int keycode);
 void	sl_move_horizontal(t_game *game, int keycode, int *x, int *y);
 void	sl_move_vertical(t_game *game, int keycode, int *x, int *y);
 void	sl_move(t_game *game, int keycode);
-int		key_hook(int keycode, t_game *game);
+int		sl_key_hook(int keycode, t_game *game);
 
 /* Utillities */
 void	sl_free_sprites(t_game *game);
@@ -70,7 +74,7 @@ t_map	*sl_start_map(char *file);
 
 /* Map verification */
 int		sl_count_char_2(char **map_grid);
-int		sl_count_zeros(char **map_grid);
+int		sl_count_walkable(char **map_grid);
 void	sl_check_next_to(char **map_grid, int *i, int *j);
 void	sl_turn_to_minus(char **map_grid);
 void	sl_start_coordinates(char **map_grid, int *x, int *y);

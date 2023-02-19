@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:54:39 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/13 18:16:50 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:55:38 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	sl_print_map(t_game *game)
 	}
 }
 
+/* so_long starts the map, the sprites, and then the window.
+Then it prints the map on the window and passes the hooks
+into a loop */
 void	so_long(char *file)
 {
 	t_map	*map;
@@ -79,11 +82,14 @@ void	so_long(char *file)
 	game.map = map;
 	game.sprites = sprites;
 	sl_print_map(&game);
-	mlx_key_hook(game.win, key_hook, &game);
+	mlx_key_hook(game.win, sl_key_hook, &game);
 	mlx_hook(game.win, 17, 0, &sl_close_x, &game);
 	mlx_loop(game.game);
 }
 
+/* The main function checks if the correct number of arguments
+is passed and, if so, checks if the map is valid. If the map
+recieved is valid, the game starts */
 int	main(int ac, char **av)
 {
 	if (ac == 2)
@@ -104,4 +110,6 @@ int	main(int ac, char **av)
 			ft_printf("Error\nFile not found.\n");
 		close(1);
 	}
+	else
+		ft_printf("Please start so_long like this:\n\"so_long maps/(name).ber\"\n");
 }

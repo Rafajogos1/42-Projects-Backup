@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:39:55 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/13 17:43:54 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:51:43 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This function frees the sprites */
 void	sl_free_sprites(t_game *game)
 {
 	mlx_destroy_image(game->game, game->sprites->c);
@@ -64,6 +65,7 @@ t_map	*sl_start_map(char *file)
 	game_map->e_path = "./textures/E.xpm";
 	game_map->es_path = "./textures/0.xpm";
 	game_map->p_path = "./textures/P.xpm";
+	game_map->p2_path = "./textures/P2.xpm";
 	game_map->w_path = "./textures/1.xpm";
 	game_map->win_w = ((ft_strlen(map) - (sl_count_lines(map) - 1)) \
 	/ sl_count_lines(map));

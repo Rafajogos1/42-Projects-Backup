@@ -6,12 +6,13 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:52:41 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/09 19:55:28 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/19 23:11:06 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This function counts how many collectibles exist. */
 int	sl_count_char_2(char **map_grid)
 {
 	int	i;
@@ -38,7 +39,8 @@ int	sl_count_char_2(char **map_grid)
 	return (0);
 }
 
-int	sl_count_zeros(char **map_grid)
+/* This function counts the walkable characters. */
+int	sl_count_walkable(char **map_grid)
 {
 	int	i;
 	int	j;
@@ -61,6 +63,7 @@ int	sl_count_zeros(char **map_grid)
 	return (count);
 }
 
+/* This function checks if the character is walkable and turns it into "-". */
 void	sl_check_next_to(char **map_grid, int *i, int *j)
 {
 	if ((map_grid[*i + 1][*j] == '0') || (map_grid[*i + 1][*j] == 'E') \
