@@ -13,7 +13,7 @@ born2beroot - 100%
 **Rank 02**  
 push_swap - 86% (less than 900 for 100 numbers and less than 8500 for 500)   
 minitalk - Unicode support - 105% *(I did the Unicode bonus without realizing due to my code working with Unicode characters without me knowing it as I didn't do the project with the bonus in mind. Only my last evaluator noticed this, the reason why my grade isn't as high as it should be.)*  
-so_long - *Currently doing it.*  
+so_long - *Awating evaluation.*  
 
 **Included libft to use in projects**  
 *(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*  
