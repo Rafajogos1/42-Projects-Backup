@@ -1,6 +1,7 @@
 # 42-Projects-Backup
-A repository to store my 42 school projects as I make them.  
-If you're using my projects as guide, I do not recommend using the ones that say "Currently doing it", as they are not finnished and may change a lot. This was simply a backup for my projects, but the tools I've made to test some functions have been proving useful to others, so I decided to make the repository public. **Also, keep in mind that, by checking other people's codes, you won't evolve much. I know it's tempting and sometimes you may end up findng something new, but you'll never get to the answer yourself by doing it.**  
+This is a backup repository for my projects at 42 that I eventually made public to help my colleagues.  
+**Even though nobody is going to stop you from checking other people's codes, try not to rely on it. You won't learn from copying and pasting.**  
+**With that said, if you're going to check my code anyway, the projects that say "Currently doing" are *NOT FINISHED*, so expect them to have errors or not to run at all, as, like I wrote earlier, the repository was once private and was only a backup.**    
 
 **Rank 00**  
 libft - Bonus included - 125%  
