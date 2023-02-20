@@ -16,4 +16,3 @@ minitalk - Unicode support - 105%
 so_long - *Awating evaluation.*  
 
 **Included libft to use in projects**  
-*(All the projects before Rank 02 use an outdated version of **libft** where the **uintptr_t** data type was in a different library.)*  
