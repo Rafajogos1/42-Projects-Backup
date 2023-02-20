@@ -11,7 +11,7 @@ ft_printf - 100%
 born2beroot - 100%
 
 **Rank 02**  
-push_swap - 86% (less than 900 for 100 numbers and less than 8500 for 500)   
+push_swap - 86%   
 minitalk - Unicode support - 105%  
 so_long - *Awating evaluation.*  
 
