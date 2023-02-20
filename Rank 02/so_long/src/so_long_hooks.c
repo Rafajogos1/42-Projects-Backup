@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 21:04:07 by rafael            #+#    #+#             */
-/*   Updated: 2023/02/19 22:59:01 by rafael           ###   ########.fr       */
+/*   Updated: 2023/02/20 10:48:56 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	sl_move(t_game *game, int keycode)
 	{
 		if (sl_find_c(game->map) == 0)
 		{
-			ft_printf("Congratulations!\nYou have finnished the game!\n");
+			ft_printf("Congratulations!\nYou have finished the game!\n");
 			sl_free_sprites(game);
 			sl_end_game(game);
 		}
