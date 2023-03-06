@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_verify_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:47:37 by ramartin          #+#    #+#             */
-/*   Updated: 2023/02/03 18:12:55 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/03/06 20:27:30 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	sl_check_around(char *map)
 	int	j;
 
 	lines = sl_count_lines(map);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (map[i++])
+	while (map[++i])
 	{
 		if (((j == 0) || (j == (lines - 1))) && (map[i] != '\n'))
 		{
