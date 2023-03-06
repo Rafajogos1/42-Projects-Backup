@@ -14,6 +14,6 @@ born2beroot - 100%
 **Rank 02**  
 push_swap - 86%   
 minitalk - Unicode support - 105%  
-so_long - *Awating evaluation.*  
+so_long - 100%   
 
 **Included libft to use in projects**  
