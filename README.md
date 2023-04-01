@@ -16,4 +16,7 @@ push_swap - 86%
 minitalk - Unicode support - 105%  
 so_long - 100%   
 
+**Rank 03**  
+Philosophers - *Currently doing it*  
+
 **Included libft to use in projects**  
