@@ -6,7 +6,7 @@
 #    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 15:05:48 by rafael            #+#    #+#              #
-#    Updated: 2023/04/01 16:07:00 by rafael           ###   ########.fr        #
+#    Updated: 2023/04/08 18:46:27 by rafael           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ AR = ar -rcs
 RM = /bin/rm -f
 
 SRCS = philosophers.c \
+		philosophers_threads.c \
 		philosophers_verify.c \
 		philosophers_utils.c
 

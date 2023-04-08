@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:51:18 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/01 16:19:29 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/08 18:05:25 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	philo_check_input(int args, char **input)
 			return (0);
 		if (ft_atoi(input[i]) < 0)
 			return (0);
+		else if ((i != (args - 1)) && (ft_atoi(input[i]) == 0))
+			return (-1);
 		else
 			i--;
 	}
