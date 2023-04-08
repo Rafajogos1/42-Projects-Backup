@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/08 22:28:26 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/08 22:39:49 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 	int				i;
 
 	i = 0;
-	pthread_mutex_init(&(mutex->i_mutex), NULL);
 	while (i < simu_data.philo)
 	{
 		mutex->philo_id = (i + 1);
 		pthread_mutex_init(&(mutex->forks[i]), NULL);
 		printf("%i\n", mutex->philo_id);
 		pthread_create(&philos[i], NULL, philo_life_cycle, (void *)(mutex));
-		pthread_mutex_lock(&(mutex->i_mutex));
 		usleep(100);
 		i++;
 	}

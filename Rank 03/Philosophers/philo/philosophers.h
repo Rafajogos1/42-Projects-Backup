@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/08 22:28:05 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/08 22:38:19 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philo
 typedef struct s_mutex
 {
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	i_mutex;
 	int				philo_id;
 }t_mutex;
 
