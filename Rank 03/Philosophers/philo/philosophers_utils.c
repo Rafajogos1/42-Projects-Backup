@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:37 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/01 15:55:45 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:03:20 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	philo_elapsed_time(struct timeval start_time)
+{
+	struct timeval	time;
+	int				elapsed_time;
+
+	gettimeofday(&time, NULL);
+	elapsed_time = (((time.tv_sec - start_time.tv_sec) * 1000 \
+	+ (time.tv_usec - start_time.tv_usec) / 1000));
+	return (elapsed_time);
+}
 
 int	ft_atoi(char *str)
 {
@@ -26,7 +37,7 @@ int	ft_atoi(char *str)
 		str++;
 	if ((*str == '+') || (*str == '-'))
 	{
-		if ((*str == '-'))
+		if (*str == '-')
 			neg = -1;
 		str++;
 	}
@@ -64,4 +75,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-

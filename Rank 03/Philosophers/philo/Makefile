@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
+#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 15:05:48 by rafael            #+#    #+#              #
-#    Updated: 2023/04/08 18:46:27 by rafael           ###   ########.fr        #
+#    Updated: 2023/04/10 17:12:28 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS = $(SRCS:.c=.o)
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CC) $(CFLAGS) -lpthread $(OBJS) -o $(NAME)
 
 clean:
 			$(RM) $(OBJS)

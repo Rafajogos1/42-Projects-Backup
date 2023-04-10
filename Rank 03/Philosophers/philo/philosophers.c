@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/08 22:39:49 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:17:21 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,26 @@ void	philo_end(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 	i = 0;
 	while (i < simu_data.philo)
 	{
+		pthread_mutex_destroy(&(mutex->forks[i]));
 		pthread_join(philos[i], NULL);
 		i++;
 	}
-	printf("%p\n", mutex);
+	free(mutex->forks);
+	free(mutex);
+	free(philos);
 }
 
 void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 {
 	int				i;
 
+	mutex->simu_time = 0;
+	gettimeofday(&(mutex->start_time), NULL);
 	i = 0;
 	while (i < simu_data.philo)
 	{
 		mutex->philo_id = (i + 1);
 		pthread_mutex_init(&(mutex->forks[i]), NULL);
-		printf("%i\n", mutex->philo_id);
 		pthread_create(&philos[i], NULL, philo_life_cycle, (void *)(mutex));
 		usleep(100);
 		i++;

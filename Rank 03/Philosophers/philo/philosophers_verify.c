@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_verify.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:51:18 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/08 18:05:25 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/10 16:57:20 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	philo_check_if_int(char *input)
 	int	i;
 
 	i = 0;
-	if ((input[i] == '0'))
+	if (input[i] == '0')
 		return (1);
 	while (input[i] != '\0')
 	{
