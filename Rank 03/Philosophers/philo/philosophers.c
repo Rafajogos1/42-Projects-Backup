@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/10 18:17:21 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:45:10 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 {
 	int				i;
 
-	mutex->simu_time = 0;
 	gettimeofday(&(mutex->start_time), NULL);
 	i = 0;
 	while (i < simu_data.philo)
@@ -64,6 +63,7 @@ void	philo_simulation(t_philo simu_data)
 
 	philos = malloc(sizeof(pthread_t) * simu_data.philo);
 	mutex = malloc(sizeof(t_mutex));
+	mutex->p = simu_data;
 	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo);
 	if (!philos || !mutex || !mutex->forks)
 	{

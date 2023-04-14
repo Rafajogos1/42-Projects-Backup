@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/10 18:13:29 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:45:03 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,22 @@ typedef struct s_philo
 /* Forks Struct */
 typedef struct s_mutex
 {
+	t_philo			p;
 	pthread_mutex_t	*forks;
 	int				philo_id;
-	int				simu_time;
 	struct timeval	start_time;
+	struct timeval	current_time;
 }t_mutex;
+
+/* Philosopher Struct*/
+typedef struct s_philo_data
+{
+	int				id;
+	int				ended;
+	int				times_eaten;
+	struct timeval	since_meal;
+	struct timeval	last_ate;
+}t_philo_data;
 
 /* Main functions */
 void	philo_error_handling(int error_code);
