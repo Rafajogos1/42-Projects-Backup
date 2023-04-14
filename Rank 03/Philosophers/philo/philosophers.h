@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/14 17:45:03 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 19:30:07 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_mutex
 	t_philo			p;
 	pthread_mutex_t	*forks;
 	int				philo_id;
+	pthread_mutex_t	may_start;
+	int				start;
+	int				next;
 	struct timeval	start_time;
 	struct timeval	current_time;
 }t_mutex;

@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/14 17:45:10 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 20:06:01 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	philo_end(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 		pthread_join(philos[i], NULL);
 		i++;
 	}
+	pthread_mutex_unlock(&(mutex->may_start));
 	free(mutex->forks);
 	free(mutex);
 	free(philos);
@@ -44,16 +45,24 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 {
 	int				i;
 
-	gettimeofday(&(mutex->start_time), NULL);
+	pthread_mutex_init(&(mutex->may_start), NULL);
+	pthread_mutex_lock(&(mutex->may_start));
 	i = 0;
+	mutex->start = 0;
 	while (i < simu_data.philo)
 	{
+		mutex->next = 1;
 		mutex->philo_id = (i + 1);
 		pthread_mutex_init(&(mutex->forks[i]), NULL);
 		pthread_create(&philos[i], NULL, philo_life_cycle, (void *)(mutex));
-		usleep(100);
+		mutex->next = 0;
+		while (mutex->next == 0)
+			usleep(1);
 		i++;
 	}
+	gettimeofday(&(mutex->start_time), NULL);
+	pthread_mutex_unlock(&(mutex->may_start));
+	printf("All philosophers exist.\n");
 }
 
 void	philo_simulation(t_philo simu_data)

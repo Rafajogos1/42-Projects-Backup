@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/14 17:45:53 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/14 20:06:10 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ void	*philo_life_cycle(void *forks_pointer)
 	data.times_eaten = 0;
 	m = (t_mutex *) forks_pointer;
 	data.id = m->philo_id;
-	gettimeofday(&(data.last_ate), NULL);
+	m->next = 1;
 	printf("I'm philosopher %i.\n", data.id);
+	while(m->start == 0)
+		if (pthread_mutex_trylock(&(m->may_start)) == 0)
+			m->start = 1;
+	gettimeofday(&(data.last_ate), NULL);
 	while (!data.ended)
 	{
 		gettimeofday(&(data.since_meal), NULL);
@@ -50,6 +54,5 @@ void	*philo_life_cycle(void *forks_pointer)
 		if ((m->p.times_to_eat > 0) && (data.times_eaten == m->p.times_to_eat))
 			data.ended = !data.ended;
 	}
-	printf("End %i.\n", data.id);
 	pthread_exit(NULL);
 }
