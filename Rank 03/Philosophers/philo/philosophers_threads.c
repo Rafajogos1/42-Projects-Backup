@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 18:58:12 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/18 22:15:37 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,17 @@ void	philo_eat(t_philo_data d, t_mutex *m)
 {
 	int	ts;
 
-	while (pthread_mutex_trylock(&(m->forks[d.left_f])) != 0 \
-	|| pthread_mutex_trylock(&(m->forks[d.right_f])) != 0)
+	while (d.holding_both == 0)
 	{
-		if (pthread_mutex_trylock(&(m->forks[d.left_f])) == 0)
-		{
-			gettimeofday(&(m->current_time), NULL);
-			ts = ((m->current_time.tv_sec - m->start_time.tv_sec) \
-		* 1000 + (m->current_time.tv_usec - m->start_time.tv_usec) / 1000);			
-			printf("%i %i has taken a fork %i\n", ts, d.id, d.left_f);
-			pthread_mutex_unlock(&(m->forks[d.left_f]));
-		}
-		if (pthread_mutex_trylock(&(m->forks[d.right_f])) == 0)
-		{
-			gettimeofday(&(m->current_time), NULL);
-			printf("%i %i has taken a fork %i\n", ts, d.id, d.right_f);
-			pthread_mutex_unlock(&(m->forks[d.right_f]));
-		}
+		pthread_mutex_lock(&(m->forks[d.left_f]));
+		printf(":)\n");
+		pthread_mutex_lock(&(m->forks[d.right_f]));
+		printf(":)))))\n");
+		d.holding_both = 1;
 	}
-	printf("%i %i has taken a fork\n", ts, d.id);
-	printf("%i %i has taken a fork\n", ts, d.id);
+	ts = 0;
+	printf("%i %p\n", ts, m);
+	d.current_state = 1;
 }
 
 void	philo_death(int id, int timestamp)
@@ -63,8 +54,9 @@ void	*philo_life_cycle(void *forks_pointer)
 	t_philo_data	data;
 
 	philo_start_values(&data, &m, &forks_pointer);
-	while(m->start == 0)
-		if (pthread_mutex_trylock(&(m->may_start)) == 0)
+	m->next = 1;
+	while (m->philos != m->fork_n)
+		if (m->philos == m->fork_n)
 			m->start = 1;
 	gettimeofday(&(data.last_ate), NULL);
 	while (!data.ended)

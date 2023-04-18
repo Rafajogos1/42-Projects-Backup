@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 18:28:36 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:33:27 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_mutex
 	pthread_mutex_t	*forks;
 	int				philo_id;
 	int				fork_n;
-	pthread_mutex_t	may_start;
+	int				philos;
 	int				start;
 	int				next;
 	struct timeval	start_time;
@@ -52,6 +52,7 @@ typedef struct s_philo_data
 	int				id;
 	int				left_f;
 	int				right_f;
+	int				holding_both;
 	int				ended;
 	int				times_eaten;
 	int				current_state;
@@ -67,7 +68,7 @@ void	philo_simulation(t_philo simu_data);
 void	*philo_life_cycle(void *forks);
 
 /* Utils */
-void	philo_start_values(t_philo_data *data, t_mutex **m, void **forks_pointer);
+void	philo_start_values(t_philo_data *data, t_mutex **m, void **fp);
 int		philo_elapsed_time(struct timeval start_time);
 int		ft_atoi(char *str);
 size_t	ft_strlen(const char *s);

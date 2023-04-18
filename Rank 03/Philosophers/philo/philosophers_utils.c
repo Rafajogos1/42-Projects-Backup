@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:37 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 18:57:03 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:43:53 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_start_values(t_philo_data *data, t_mutex **m, void **forks_pointer)
+void	philo_start_values(t_philo_data *data, t_mutex **m, void **fp)
 {
-	*m = (t_mutex *) *forks_pointer;
+	*m = (t_mutex *) *fp;
 	data->id = (*m)->philo_id;
 	if (data->id == 1)
 	{
@@ -26,10 +26,10 @@ void	philo_start_values(t_philo_data *data, t_mutex **m, void **forks_pointer)
 		data->left_f = (data->id - 2);
 		data->right_f = (data->id - 1);
 	}
+	data->holding_both = 0;
 	data->ended = 0;
 	data->times_eaten = 0;
 	data->current_state = 0;
-	(*m)->next = 1;
 }
 
 int	philo_elapsed_time(struct timeval start_time)
