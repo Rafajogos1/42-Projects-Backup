@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/14 20:06:01 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/18 18:57:00 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 	}
 	gettimeofday(&(mutex->start_time), NULL);
 	pthread_mutex_unlock(&(mutex->may_start));
-	printf("All philosophers exist.\n");
 }
 
 void	philo_simulation(t_philo simu_data)
@@ -74,6 +73,7 @@ void	philo_simulation(t_philo simu_data)
 	mutex = malloc(sizeof(t_mutex));
 	mutex->p = simu_data;
 	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo);
+	mutex->fork_n = simu_data.philo;
 	if (!philos || !mutex || !mutex->forks)
 	{
 		philo_error_handling(-1);
