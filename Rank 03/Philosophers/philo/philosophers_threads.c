@@ -3,30 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 22:15:37 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/20 18:28:45 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_eat(t_philo_data d, t_mutex *m)
+void	philo_eat(t_philo_data *d, t_mutex *m)
 {
 	int	ts;
 
-	while (d.holding_both == 0)
+	while ((*d).holding_both == 0)
 	{
-		pthread_mutex_lock(&(m->forks[d.left_f]));
-		printf(":)\n");
-		pthread_mutex_lock(&(m->forks[d.right_f]));
-		printf(":)))))\n");
-		d.holding_both = 1;
+		if (pthread_mutex_lock(&(m->forks[(*d).left_f])) == 0)
+		{
+			if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
+			{
+				printf("%i nice\n", (*d).id);
+				(*d).holding_both = 1;
+				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
+				pthread_mutex_unlock(&(m->forks[(*d).right_f]));
+			}
+			else
+			{
+				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
+				printf("%i too bad double :(\n", (*d).id);
+				return ;
+			}
+		}
+		else
+			return ;
 	}
 	ts = 0;
 	printf("%i %p\n", ts, m);
-	d.current_state = 1;
+	(*d).current_state = 1;
 }
 
 void	philo_death(int id, int timestamp)
@@ -59,13 +72,13 @@ void	*philo_life_cycle(void *forks_pointer)
 		if (m->philos == m->fork_n)
 			m->start = 1;
 	gettimeofday(&(data.last_ate), NULL);
-	while (!data.ended)
+	while (!data.ended && data.current_state != 3)
 	{
 		gettimeofday(&(data.since_meal), NULL);
 		if (check_if_dead(data.last_ate, data.since_meal, m, data.id) == 1)
-			data.ended = !data.ended;
+			data.current_state = 3;
 		if (data.current_state == 0)
-			philo_eat(data, m);
+			philo_eat(&data, m);
 		if ((m->p.times_to_eat > 0) && (data.times_eaten == m->p.times_to_eat))
 			data.ended = !data.ended;
 	}

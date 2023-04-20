@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 21:33:27 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/20 18:11:27 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+# include <errno.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -47,6 +48,7 @@ typedef struct s_mutex
 /*0 == Eating*/
 /*1 == Sleeping*/
 /*2 == Thinking*/
+/*3 == Dead */
 typedef struct s_philo_data
 {
 	int				id;
@@ -66,6 +68,8 @@ void	philo_end(t_philo simu_data, pthread_t *philos, t_mutex *mutex);
 void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex);
 void	philo_simulation(t_philo simu_data);
 void	*philo_life_cycle(void *forks);
+int		check_if_dead(struct timeval l_a, struct timeval s_m, t_mutex *m, int id);
+void	philo_death(int id, int timestamp);
 
 /* Utils */
 void	philo_start_values(t_philo_data *data, t_mutex **m, void **fp);
