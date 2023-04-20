@@ -3,21 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/20 18:28:45 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/20 21:28:36 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	philo_eat(t_philo_data *d, t_mutex *m)
+void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 {
-	int	ts;
+	int			ts;
+	static int	tries = 1;
 
 	while ((*d).holding_both == 0)
 	{
+		if (check_if_dead((*d).last_ate, (*d).since_meal, m, (*d).id) == 1)
+		{
+			(*d).current_state = 3;
+			return ;
+		}
 		if (pthread_mutex_lock(&(m->forks[(*d).left_f])) == 0)
 		{
 			if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
@@ -31,15 +37,22 @@ void	philo_eat(t_philo_data *d, t_mutex *m)
 			{
 				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 				printf("%i too bad double :(\n", (*d).id);
+				usleep(1000 * (2 * tries++));
 				return ;
 			}
 		}
 		else
+		{
+			printf("%i too bad :(\n", (*d).id);
+			usleep(1000 * (2 * tries++));
 			return ;
+		}
 	}
 	ts = 0;
 	printf("%i %p\n", ts, m);
 	(*d).current_state = 1;
+	tries = 0;
+	return ;
 }
 
 void	philo_death(int id, int timestamp)
@@ -78,7 +91,7 @@ void	*philo_life_cycle(void *forks_pointer)
 		if (check_if_dead(data.last_ate, data.since_meal, m, data.id) == 1)
 			data.current_state = 3;
 		if (data.current_state == 0)
-			philo_eat(&data, m);
+			philo_pick_forks(&data, m);
 		if ((m->p.times_to_eat > 0) && (data.times_eaten == m->p.times_to_eat))
 			data.ended = !data.ended;
 	}
