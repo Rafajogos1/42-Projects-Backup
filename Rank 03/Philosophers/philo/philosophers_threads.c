@@ -3,53 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/21 18:49:56 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/22 00:17:09 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+void	philo_eat(t_philo_data *d, t_mutex *m)
+{
+	printf("%i %i is eating\n", philo_elapsed_time(m->start_time), d->id);
+	usleep(m->p.eating_time * 1000);
+	pthread_mutex_unlock(&(m->forks[(*d).left_f]));
+	pthread_mutex_unlock(&(m->forks[(*d).right_f]));
+	gettimeofday(&(d->last_ate), NULL);
+	d->current_state++;
+	d->times_eaten++;
+}
+
 void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 {
-	int			ts;
-
-	usleep(((*d).id) * 5000);
-	while ((*d).holding_both == 0)
+	usleep(d->id * 500);
+	if (pthread_mutex_lock(&(m->forks[(*d).left_f])) == 0)
 	{
-		if (check_if_dead((*d).last_ate, (*d).since_meal, m, (*d).id) == 1)
+		printf("%i %i has taken a fork\n", \
+		philo_elapsed_time(m->start_time), d->id);
+		if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
 		{
-			(*d).current_state = 3;
-			return ;
-		}
-		if (pthread_mutex_lock(&(m->forks[(*d).left_f])) == 0)
-		{
-			if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
-			{
-				printf("%i niceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\n", (*d).id);
-				(*d).holding_both = 1;
-				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
-				pthread_mutex_unlock(&(m->forks[(*d).right_f]));
-			}
-			else
-			{
-				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
-				printf("%i too bad double :(\n", (*d).id);
-				return ;
-			}
+			printf("%i %i has taken a fork\n", \
+			philo_elapsed_time(m->start_time), d->id);
+			philo_eat(d, m);
 		}
 		else
-		{
-			printf("%i too bad :(\n", (*d).id);
-			return ;
-		}
+			pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 	}
-	ts = 0;
-	printf("%i %p\n", ts, m);
-	(*d).current_state = 1;
-	return ;
 }
 
 void	philo_death(int id, int timestamp)

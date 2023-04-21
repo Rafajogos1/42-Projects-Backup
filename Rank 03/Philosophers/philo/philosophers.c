@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/21 18:37:59 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/22 00:11:10 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	philo_end(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 		pthread_join(philos[i], NULL);
 		i++;
 	}
+	free(mutex->philo_data_arr);
 	free(mutex->forks);
 	free(mutex);
 	free(philos);
@@ -47,9 +48,7 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 	i = 0;
 	mutex->start = 0;
 	mutex->philos = 0;
-	while (i < simu_data.philo)
-		pthread_mutex_init(&(mutex->forks[i++]), NULL);
-	i = 0;
+	philo_mutex_init(simu_data, mutex);
 	while (i < simu_data.philo)
 	{
 		mutex->next = 1;
@@ -61,8 +60,8 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 		mutex->philos++;
 		i++;
 	}
-	mutex->start = 1;
 	gettimeofday(&(mutex->start_time), NULL);
+	philo_death_checker(mutex);
 }
 
 void	philo_simulation(t_philo simu_data)
@@ -73,9 +72,10 @@ void	philo_simulation(t_philo simu_data)
 	philos = malloc(sizeof(pthread_t) * simu_data.philo);
 	mutex = malloc(sizeof(t_mutex));
 	mutex->p = simu_data;
-	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo + 1);
+	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo);
+	mutex->philo_data_arr = malloc(sizeof(t_philo_data *) * simu_data.philo);
 	mutex->fork_n = simu_data.philo;
-	if (!philos || !mutex || !mutex->forks)
+	if (!philos || !mutex || !mutex->forks || !mutex->philo_data_arr)
 	{
 		philo_error_handling(-1);
 		return ;

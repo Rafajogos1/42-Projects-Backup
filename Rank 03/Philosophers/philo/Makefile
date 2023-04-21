@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
+#    By: rafael <rafael@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 15:05:48 by rafael            #+#    #+#              #
-#    Updated: 2023/04/10 17:12:28 by ramartin         ###   ########.fr        #
+#    Updated: 2023/04/21 23:28:37 by rafael           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RM = /bin/rm -f
 SRCS = philosophers.c \
 		philosophers_threads.c \
 		philosophers_verify.c \
-		philosophers_utils.c
+		philosophers_utils.c \
+		philosophers_utils_2.c
 
 OBJS = $(SRCS:.c=.o)
 

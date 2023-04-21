@@ -6,7 +6,7 @@
 /*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/20 21:05:06 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/21 23:50:00 by rafael           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ typedef struct s_philo
 	int	times_to_eat;
 }t_philo;
 
-/* Forks Struct */
-typedef struct s_mutex
-{
-	t_philo			p;
-	pthread_mutex_t	*forks;
-	int				philo_id;
-	int				fork_n;
-	int				philos;
-	int				start;
-	int				next;
-	struct timeval	start_time;
-	struct timeval	current_time;
-}t_mutex;
-
 /* Philosopher Struct*/
 /*0 == Eating*/
 /*1 == Sleeping*/
@@ -54,13 +40,28 @@ typedef struct s_philo_data
 	int				id;
 	int				left_f;
 	int				right_f;
-	int				holding_both;
 	int				ended;
 	int				times_eaten;
 	int				current_state;
 	struct timeval	since_meal;
 	struct timeval	last_ate;
 }t_philo_data;
+
+/* Forks Struct */
+typedef struct s_mutex
+{
+	t_philo			p;
+	pthread_mutex_t	*forks;
+	int				philo_id;
+	int				fork_n;
+	int				philos;
+	int				start;
+	int				next;
+	int				still_alive;
+	struct timeval	start_time;
+	struct timeval	current_time;
+	t_philo_data	**philo_data_arr;
+}t_mutex;
 
 /* Main functions */
 void	philo_error_handling(int error_code);
@@ -73,6 +74,8 @@ t_mutex *m, int id);
 void	philo_death(int id, int timestamp);
 
 /* Utils */
+void	philo_death_checker(t_mutex *mutex);
+void	philo_mutex_init(t_philo simu_data, t_mutex *mutex);
 void	philo_start_values(t_philo_data *data, t_mutex **m, void **fp);
 int		philo_elapsed_time(struct timeval start_time);
 int		ft_atoi(char *str);
