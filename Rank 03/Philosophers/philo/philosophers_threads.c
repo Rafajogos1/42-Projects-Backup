@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/20 21:28:36 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/21 18:40:13 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 {
 	int			ts;
-	static int	tries = 1;
 
+	usleep(((*d).id) * 1000);
 	while ((*d).holding_both == 0)
 	{
 		if (check_if_dead((*d).last_ate, (*d).since_meal, m, (*d).id) == 1)
@@ -28,7 +28,7 @@ void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 		{
 			if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
 			{
-				printf("%i nice\n", (*d).id);
+				printf("%i niceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\n", (*d).id);
 				(*d).holding_both = 1;
 				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 				pthread_mutex_unlock(&(m->forks[(*d).right_f]));
@@ -37,21 +37,20 @@ void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 			{
 				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 				printf("%i too bad double :(\n", (*d).id);
-				usleep(1000 * (2 * tries++));
+				usleep((*d).id * 500);
 				return ;
 			}
 		}
 		else
 		{
 			printf("%i too bad :(\n", (*d).id);
-			usleep(1000 * (2 * tries++));
+			usleep((*d).id * 500);
 			return ;
 		}
 	}
 	ts = 0;
 	printf("%i %p\n", ts, m);
 	(*d).current_state = 1;
-	tries = 0;
 	return ;
 }
 
@@ -85,6 +84,7 @@ void	*philo_life_cycle(void *forks_pointer)
 		if (m->philos == m->fork_n)
 			m->start = 1;
 	gettimeofday(&(data.last_ate), NULL);
+	printf("%i: %i %i\n", data.id - 1, data.left_f, data.right_f);
 	while (!data.ended && data.current_state != 3)
 	{
 		gettimeofday(&(data.since_meal), NULL);

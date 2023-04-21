@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/18 22:12:38 by rafael           ###   ########.fr       */
+/*   Updated: 2023/04/21 18:37:59 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	philo_simulation(t_philo simu_data)
 	philos = malloc(sizeof(pthread_t) * simu_data.philo);
 	mutex = malloc(sizeof(t_mutex));
 	mutex->p = simu_data;
-	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo);
+	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo + 1);
 	mutex->fork_n = simu_data.philo;
 	if (!philos || !mutex || !mutex->forks)
 	{
