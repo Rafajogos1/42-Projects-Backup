@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/21 18:40:13 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:49:56 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 {
 	int			ts;
 
-	usleep(((*d).id) * 1000);
+	usleep(((*d).id) * 5000);
 	while ((*d).holding_both == 0)
 	{
 		if (check_if_dead((*d).last_ate, (*d).since_meal, m, (*d).id) == 1)
@@ -37,14 +37,12 @@ void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 			{
 				pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 				printf("%i too bad double :(\n", (*d).id);
-				usleep((*d).id * 500);
 				return ;
 			}
 		}
 		else
 		{
 			printf("%i too bad :(\n", (*d).id);
-			usleep((*d).id * 500);
 			return ;
 		}
 	}
@@ -84,7 +82,6 @@ void	*philo_life_cycle(void *forks_pointer)
 		if (m->philos == m->fork_n)
 			m->start = 1;
 	gettimeofday(&(data.last_ate), NULL);
-	printf("%i: %i %i\n", data.id - 1, data.left_f, data.right_f);
 	while (!data.ended && data.current_state != 3)
 	{
 		gettimeofday(&(data.since_meal), NULL);
