@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/21 23:50:00 by rafael           ###   ########.fr       */
+/*   Updated: 2023/05/08 18:09:52 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_philo
 }t_philo;
 
 /* Philosopher Struct*/
-/*0 == Eating*/
-/*1 == Sleeping*/
-/*2 == Thinking*/
+/*0 == Thinking*/
+/*1 == Eating*/
+/*2 == Sleeping*/
 /*3 == Dead */
 typedef struct s_philo_data
 {

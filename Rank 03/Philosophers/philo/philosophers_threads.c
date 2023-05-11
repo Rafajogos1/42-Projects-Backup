@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_threads.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/22 00:17:09 by rafael           ###   ########.fr       */
+/*   Updated: 2023/05/11 18:07:40 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	philo_eat(t_philo_data *d, t_mutex *m)
 	pthread_mutex_unlock(&(m->forks[(*d).left_f]));
 	pthread_mutex_unlock(&(m->forks[(*d).right_f]));
 	gettimeofday(&(d->last_ate), NULL);
-	d->current_state++;
+	d->current_state = 2;
 	d->times_eaten++;
 }
 
@@ -32,6 +32,7 @@ void	philo_pick_forks(t_philo_data *d, t_mutex *m)
 		philo_elapsed_time(m->start_time), d->id);
 		if (pthread_mutex_lock(&(m->forks[(*d).right_f])) == 0)
 		{
+			d->current_state = 1;
 			printf("%i %i has taken a fork\n", \
 			philo_elapsed_time(m->start_time), d->id);
 			philo_eat(d, m);
@@ -54,6 +55,7 @@ int	check_if_dead(struct timeval l_a, struct timeval s_m, t_mutex *m, int id)
 		gettimeofday(&(m->current_time), NULL);
 		philo_death(id, ((m->current_time.tv_sec - m->start_time.tv_sec) \
 		* 1000 + (m->current_time.tv_usec - m->start_time.tv_usec) / 1000));
+		m->philo_data_arr[id - 1]->ended = 1;
 		return (1);
 	}
 	else
@@ -73,9 +75,9 @@ void	*philo_life_cycle(void *forks_pointer)
 	gettimeofday(&(data.last_ate), NULL);
 	while (!data.ended && data.current_state != 3)
 	{
-		gettimeofday(&(data.since_meal), NULL);
 		if (check_if_dead(data.last_ate, data.since_meal, m, data.id) == 1)
 			data.current_state = 3;
+		gettimeofday(&(data.since_meal), NULL);
 		if (data.current_state == 0)
 			philo_pick_forks(&data, m);
 		if ((m->p.times_to_eat > 0) && (data.times_eaten == m->p.times_to_eat))

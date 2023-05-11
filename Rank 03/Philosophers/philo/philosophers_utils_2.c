@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 23:28:50 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/22 00:16:01 by rafael           ###   ########.fr       */
+/*   Updated: 2023/05/11 18:07:00 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,17 @@ void	philo_death_checker(t_mutex *mutex)
 {
 	int	i;
 
-	while (mutex->still_alive > 0)
+	while ((mutex->still_alive) > 0)
 	{
 		i = 0;
-		while (i < mutex->fork_n)
+		while (i < (mutex->fork_n))
 		{
-			if (mutex->philo_data_arr[i]->current_state != 3)
+			if ((mutex->philo_data_arr[i]->current_state != 1) \
+			&& (mutex->philo_data_arr[i]->current_state != 3))
 			{
+				gettimeofday(&(mutex->philo_data_arr[i]->since_meal), NULL);
 				if (check_if_dead(mutex->philo_data_arr[i]->last_ate, \
-				mutex->philo_data_arr[i]->since_meal, mutex, i + 1))
+				mutex->philo_data_arr[i]->since_meal, mutex, i + 1) == 1)
 				{
 					mutex->philo_data_arr[i]->current_state = 3;
 					mutex->still_alive--;
