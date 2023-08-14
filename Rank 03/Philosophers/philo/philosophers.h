@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:12:02 by rafael            #+#    #+#             */
-/*   Updated: 2023/05/08 18:09:52 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:26:36 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	*philo_life_cycle(void *forks);
 int		check_if_dead(struct timeval l_a, struct timeval s_m, \
 t_mutex *m, int id);
 void	philo_death(int id, int timestamp);
+void	philo_sleep(t_mutex *m, int *current_state);
 
 /* Utils */
 void	philo_death_checker(t_mutex *mutex);

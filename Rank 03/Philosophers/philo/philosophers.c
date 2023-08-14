@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rafael <rafael@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
-/*   Updated: 2023/04/22 00:11:10 by rafael           ###   ########.fr       */
+/*   Updated: 2023/08/14 16:57:12 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
 		i++;
 	}
 	gettimeofday(&(mutex->start_time), NULL);
-	philo_death_checker(mutex);
 }
 
 void	philo_simulation(t_philo simu_data)

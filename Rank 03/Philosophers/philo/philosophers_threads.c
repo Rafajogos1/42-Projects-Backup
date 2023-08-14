@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:32:52 by rafael            #+#    #+#             */
-/*   Updated: 2023/05/11 18:07:40 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/14 17:26:59 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	*philo_life_cycle(void *forks_pointer)
 			philo_pick_forks(&data, m);
 		if ((m->p.times_to_eat > 0) && (data.times_eaten == m->p.times_to_eat))
 			data.ended = !data.ended;
+		if (data.current_state == 2)
+			philo_sleep(m, &(data.current_state));
 	}
 	pthread_exit(NULL);
 }
