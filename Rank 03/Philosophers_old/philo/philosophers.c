@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 16:53:29 by ramartin          #+#    #+#             */
-/*   Updated: 2023/08/22 16:59:43 by ramartin         ###   ########.fr       */
+/*   Created: 2023/04/01 15:16:35 by rafael            #+#    #+#             */
+/*   Updated: 2023/08/14 16:57:12 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,65 @@ void	philo_error_handling(int error_code)
 		write(2, "Error: At least one argument isn't a positive integer.\n", 56);
 	if (error_code == 2)
 		write(2, "Times and number of philosophers must not be null.\n", 52);
+}
+
+void	philo_end(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
+{
+	int	i;
+
+	i = 0;
+	while (i < simu_data.philo)
+	{
+		pthread_mutex_destroy(&(mutex->forks[i]));
+		pthread_join(philos[i], NULL);
+		i++;
+	}
+	free(mutex->philo_data_arr);
+	free(mutex->forks);
+	free(mutex);
+	free(philos);
+}
+
+void	philo_start(t_philo simu_data, pthread_t *philos, t_mutex *mutex)
+{
+	int				i;
+
+	i = 0;
+	mutex->start = 0;
+	mutex->philos = 0;
+	philo_mutex_init(simu_data, mutex);
+	while (i < simu_data.philo)
+	{
+		mutex->next = 1;
+		mutex->philo_id = (i + 1);
+		pthread_create(&philos[i], NULL, philo_life_cycle, (void *)(mutex));
+		mutex->next = 0;
+		while (mutex->next == 0)
+			usleep(1);
+		mutex->philos++;
+		i++;
+	}
+	gettimeofday(&(mutex->start_time), NULL);
+}
+
+void	philo_simulation(t_philo simu_data)
+{
+	pthread_t	*philos;
+	t_mutex		*mutex;
+
+	philos = malloc(sizeof(pthread_t) * simu_data.philo);
+	mutex = malloc(sizeof(t_mutex));
+	mutex->p = simu_data;
+	mutex->forks = malloc(sizeof(pthread_mutex_t) * simu_data.philo);
+	mutex->philo_data_arr = malloc(sizeof(t_philo_data *) * simu_data.philo);
+	mutex->fork_n = simu_data.philo;
+	if (!philos || !mutex || !mutex->forks || !mutex->philo_data_arr)
+	{
+		philo_error_handling(-1);
+		return ;
+	}
+	philo_start(simu_data, philos, mutex);
+	philo_end(simu_data, philos, mutex);
 }
 
 int	main(int ac, char **av)
@@ -40,7 +99,7 @@ int	main(int ac, char **av)
 				simu_data.times_to_eat = 0;
 			else
 				simu_data.times_to_eat = ft_atoi(av[5]);
-			/*philo_simulation(simu_data);*/
+			philo_simulation(simu_data);
 		}
 		else if (philo_check_input(ac, av) == 0)
 			philo_error_handling(1);
