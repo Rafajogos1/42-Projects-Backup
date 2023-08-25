@@ -6,7 +6,7 @@
 #    By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/01 15:05:48 by rafael            #+#    #+#              #
-#    Updated: 2023/08/22 17:02:19 by ramartin         ###   ########.fr        #
+#    Updated: 2023/08/25 18:47:30 by ramartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ RM = /bin/rm -f
 
 SRCS = philosophers.c \
 		philosophers_utils.c \
-		philosophers_verify.c
+		philosophers_verify.c \
+		philosophers_threads.c
 
 OBJS = $(SRCS:.c=.o)
 

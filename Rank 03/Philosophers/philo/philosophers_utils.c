@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:00:21 by ramartin          #+#    #+#             */
-/*   Updated: 2023/08/25 17:29:22 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:31:19 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ size_t	ft_strlen(const char *s)
 
 void	philo_store_values(t_philo *simu_data, int ac, char **av)
 {
-	simu_data->philo = ft_atoi(av[1]);
+	simu_data->philo_n = ft_atoi(av[1]);
 	simu_data->death_time = ft_atoi(av[2]);
 	simu_data->eating_time = ft_atoi(av[3]);
 	simu_data->sleeping_time = ft_atoi(av[4]);
@@ -75,4 +75,17 @@ void	philo_store_values(t_philo *simu_data, int ac, char **av)
 		simu_data->times_to_eat = 0;
 	else
 		simu_data->times_to_eat = ft_atoi(av[5]);
+}
+
+void	philo_mutex_init(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->philo_n)
+	{
+		pthread_mutex_init(&(philo->forks[i]), NULL);
+		pthread_mutex_unlock(&(philo->forks[i]));
+		i++;
+	}
 }

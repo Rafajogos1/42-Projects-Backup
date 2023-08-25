@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:53:29 by ramartin          #+#    #+#             */
-/*   Updated: 2023/08/25 17:36:42 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/25 18:44:53 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,30 @@ int	philo_error_handling(int error_code)
 	if (error_code == 1)
 		write(2, "Error: At least one argument isn't a positive integer.\n", 56);
 	if (error_code == 2)
-		write(2, "Times and number of philosophers must not be null.\n", 52);
+		write(2, "Only the number of times to eat can be null.\n", 46);
 	return (0);
 }
 
-void	philo_simulation(t_philo *philo)
+void	philo_start(t_philo *p)
 {
-	
+	int	i;
+
+	i = 0;
+	philo_mutex_init(p);
+	while (i < p->philo_n)
+	{
+		pthread_create(&(p->p_threads[i]), NULL, philo_life_cycle, (void *)(p));
+	}
+}
+
+int	philo_simulation(t_philo *philo)
+{
+	philo->p_threads = malloc(sizeof(pthread_t) * philo->philo_n);
+	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->philo_n);
+	philo->philo_data_arr = malloc(sizeof(t_philo_data) * philo->philo_n);
+	if (!(philo->p_threads) || !(philo->forks) || !(philo->philo_data_arr))
+		return (philo_error_handling(-1));
+	philo_start(philo);
 }
 
 int	main(int ac, char **av)
@@ -45,11 +62,11 @@ int	main(int ac, char **av)
 			philo_simulation(philo);
 		}
 		else if (philo_check_input(ac, av) == 0)
-			philo_error_handling(1);
+			return (philo_error_handling(1));
 		else
-			philo_error_handling(2);
+			return (philo_error_handling(2));
 	}
 	else
-		philo_error_handling(0);
+		return (philo_error_handling(0));
 	free(philo);
 }
