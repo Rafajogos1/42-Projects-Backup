@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:53:29 by ramartin          #+#    #+#             */
-/*   Updated: 2023/08/25 18:44:53 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:43:05 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ void	philo_start(t_philo *p)
 	philo_mutex_init(p);
 	while (i < p->philo_n)
 	{
+		p->current_philo = (i + 1);
 		pthread_create(&(p->p_threads[i]), NULL, philo_life_cycle, (void *)(p));
+		p->next = 0;
+		while (p->next == 0)
+			usleep(1);
+		p->created_philos++;
+		i++;
 	}
 }
 
@@ -45,6 +51,7 @@ int	philo_simulation(t_philo *philo)
 	if (!(philo->p_threads) || !(philo->forks) || !(philo->philo_data_arr))
 		return (philo_error_handling(-1));
 	philo_start(philo);
+	return (0);
 }
 
 int	main(int ac, char **av)

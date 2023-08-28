@@ -6,7 +6,7 @@
 /*   By: ramartin <ramartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:53:31 by ramartin          #+#    #+#             */
-/*   Updated: 2023/08/25 18:45:50 by ramartin         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:39:30 by ramartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_philo_data
 typedef struct s_philo
 {
 	int				next;
+	int				current_philo;
+	int				created_philos;
+	int				start;
+	int				alive_philos;
 	int				philo_n;
 	int				death_time;
 	int				eating_time;
@@ -54,7 +58,7 @@ typedef struct s_philo
 }t_philo;
 
 /* Threads */
-void	philo_life_cycle(void *data);
+void	*philo_life_cycle(void *data);
 
 /* Utils */
 int		ft_atoi(char *str);
@@ -62,6 +66,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *s);
 void	philo_store_values(t_philo *simu_data, int ac, char **av);
 void	philo_mutex_init(t_philo *philo);
+void	philo_start_values(void **d, t_philo **data, t_philo_data *philo_data);
 
 /* Verify */
 int		philo_check_int_limits(int len, char *input);
