@@ -12,6 +12,9 @@
 
 #include "philosophers.h"
 
+/* A recreation of atoi. */
+/* @param str The string to convert into an int */
+/* @return The resulting number */
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -38,6 +41,9 @@ int	ft_atoi(const char *str)
 	return (num * neg);
 }
 
+/* This function checks if the arguments are only numbers. */
+/* @param av The argument vector. */
+/* @return 1 if all arguments are numbers, 0 if not. */
 int	philo_input_checker(char **av)
 {
 	int	i;
